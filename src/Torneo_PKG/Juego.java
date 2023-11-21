@@ -1,5 +1,5 @@
 package Torneo_PKG;
 
-public class Juego {
+public abstract class Juego {
     
 }
