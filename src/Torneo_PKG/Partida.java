@@ -33,6 +33,15 @@ public class Partida {
     public void setPuntaje(int puntaje){this.puntaje = puntaje;}
     public void setJuego(Juego juego){this.juego = juego;}
 
-    
+    /*
+     * Recibe un juego 
+     * Retorna el valor de verdad del juego es el de la partida
+     */
+    public boolean esJuego(Juego juego){
+        if(this.juego.getNombre().equals(juego.getNombre()))
+            return true;
+        
+            return false;
+    }
     
 }
