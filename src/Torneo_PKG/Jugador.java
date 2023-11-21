@@ -21,7 +21,7 @@ public class Jugador {
      */
     public String getNombre() {return nombre;}
     public String getCorreo() {return correo;}
-    public String getNickName() {return String.valueOf(nickName);}
+    public String getNickName() {return nickName;}
     public Partida getPartida(int i){return partidas.get(i);}
 
     /*
@@ -32,7 +32,7 @@ public class Jugador {
     } public void setCorreo(String correo) {
         this.correo = correo;
     } public void setNickName(String nikcName) {
-        this.nickName = nickName;
+        this.nickName = nikcName;
     } public void setPartida(int i, Partida partida){
         partidas.set(i, partida);
     }
