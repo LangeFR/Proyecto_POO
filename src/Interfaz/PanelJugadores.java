@@ -2,9 +2,7 @@ package Interfaz;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import java.awt.Image;
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.*;
 
 public class PanelJugadores extends JPanel {
     private JLabel lJugador;
@@ -14,7 +12,7 @@ public class PanelJugadores extends JPanel {
 public PanelJugadores() {
     setLayout(new FlowLayout());
     TitledBorder border = BorderFactory.createTitledBorder("Consultar jugadores");
-    border.setTitleColor(Color.ORANGE);
+    border.setTitleColor(Color.BLACK);
     setBorder(border);
     setBackground(Color.WHITE);
 
@@ -25,8 +23,8 @@ public PanelJugadores() {
     // Creación de JTextField
     tJugador = new JTextField(30); // Ajusto el tamaño para mejor estética
     tJugador.setForeground(Color.BLACK);
-
     bConsultar = new JButton("Consultar");
+    bConsultar.setBackground(Color.YELLOW);
 
     // Crear JLabel para la imagen y cargar la imagen desde el archivo consola.jpg
     JLabel imagenLabel = new JLabel();
@@ -43,8 +41,6 @@ public PanelJugadores() {
     add(lJugador);
     add(tJugador);
     add(bConsultar);
-
-    // Agregar el JLabel de la imagen al panel
     add(imagenLabel);
 }
 }

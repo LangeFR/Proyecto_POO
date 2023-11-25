@@ -20,8 +20,8 @@ public class PanelRegistro extends JPanel{
     public PanelRegistro() {
         //GridLayout
         setLayout(new GridLayout(2, 4));  
-        TitledBorder border = BorderFactory.createTitledBorder("Registro");
-        border.setTitleColor(Color.BLUE);
+        TitledBorder border = BorderFactory.createTitledBorder("Registra tu usuario");
+        border.setTitleColor(Color.BLACK);
         setBorder(border);
 
         lNombre = new JLabel("Nombre:");
@@ -34,14 +34,14 @@ public class PanelRegistro extends JPanel{
         tNombre.setForeground(Color.BLACK);
         tPartidaTextField.setForeground(Color.BLACK);
 
-        bJUEGO1 = new JButton("JUEGO1");
-        bJUEGO1.setBackground(Color.orange);
-        bJUEGO2 = new JButton("JUEGO2");
-        bJUEGO2.setBackground(Color.orange);
-        bJUEGO3 = new JButton("JUEGO3");
-        bJUEGO3.setBackground(Color.orange);
-        bJUEGO4 = new JButton("JUEGO4");
-        bJUEGO4.setBackground(Color.orange);
+        bJUEGO1 = new JButton("Fortnite");
+        bJUEGO1.setBackground(Color.YELLOW);
+        bJUEGO2 = new JButton("Ajedrez");
+        bJUEGO2.setBackground(Color.YELLOW);
+        bJUEGO3 = new JButton("Tetris");
+        bJUEGO3.setBackground(Color.YELLOW);
+        bJUEGO4 = new JButton("Apex Legends");
+        bJUEGO4.setBackground(Color.YELLOW);
 
         
         add(lNombre);
