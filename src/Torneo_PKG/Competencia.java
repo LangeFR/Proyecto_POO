@@ -10,9 +10,7 @@ public class Competencia {
      * Constructor competencia
      * No parametros
      */
-    public Competencia(){
-
-    }
+    public Competencia(){}
 
     /*
      * Recibe un jugador y lo agrega a la lista de jugadores
@@ -44,9 +42,21 @@ public class Competencia {
         return juegos.get(i);
     }
 
-    //--------------------------------------------------
+    /*
+     * Compara los puntajes de todos los jugadores y encuentra el mejor
+     * Retorna el jugador con el puntaje mas alto
+     */
     public Jugador mejorJugador(){
-        //Por implementar
-        return null;
+        int puntajeMax = jugadores.get(0).puntajeAcumulado();
+        int posMejor = 0;
+
+        for (int jugadorActual = 0; jugadorActual <= jugadores.size(); jugadorActual++){
+            if(jugadores.get(jugadorActual).puntajeAcumulado() > puntajeMax){
+                puntajeMax = jugadores.get(jugadorActual).puntajeAcumulado();
+                posMejor = jugadorActual;
+            }
+        }
+
+        return jugadores.get(posMejor);
     }
 }
