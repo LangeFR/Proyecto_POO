@@ -8,6 +8,7 @@ public class PanelJugadores extends JPanel {
     private JLabel lJugador;
     private JTextField tJugador;
     private JButton bConsultar;
+    private JButton bCampeon;
 
 public PanelJugadores() {
     setLayout(new FlowLayout());
@@ -23,8 +24,10 @@ public PanelJugadores() {
     // Creación de JTextField
     tJugador = new JTextField(30); // Ajusto el tamaño para mejor estética
     tJugador.setForeground(Color.BLACK);
-    bConsultar = new JButton("Consultar");
+    bConsultar = new JButton("Consultar jugador");
     bConsultar.setBackground(Color.YELLOW);
+    bCampeon = new JButton("Consultar campeón del torneo");
+    bCampeon.setBackground(Color.YELLOW);
 
     // Crear JLabel para la imagen y cargar la imagen desde el archivo consola.jpg
     JLabel imagenLabel = new JLabel();
@@ -41,6 +44,7 @@ public PanelJugadores() {
     add(lJugador);
     add(tJugador);
     add(bConsultar);
+    add(bCampeon);
     add(imagenLabel);
 }
 }
