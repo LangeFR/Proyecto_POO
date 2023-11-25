@@ -135,8 +135,16 @@ public class Jugador {
      * -----------------------------------------------------------------
      */
     public int horasJugadas(Juego juego){
-        //por implementar
-        return -1;
+        int horasTotal = 0;
+
+        for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
+            
+            if(juego.getClass().isInstance(partidas.get(partidaActual).getJuego()))
+                horasTotal += partidas.get(partidaActual).getTiempo() / 3600;
+            
+        }
+
+        return horasTotal;
     }
 
 }

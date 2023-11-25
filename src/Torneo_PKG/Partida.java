@@ -45,3 +45,50 @@ public class Partida {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * public int virtuales (){
+        int cont = 0;
+        for (Estudiante estu : estudiantes){
+            if (estu instanceof EstudianteVirtual) {
+                cont++;
+            }
+        }
+        return cont; 
+    }
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
