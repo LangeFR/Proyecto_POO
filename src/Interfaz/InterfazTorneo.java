@@ -23,6 +23,7 @@ public class InterfazTorneo extends JFrame {
 
         // Panel superior
         //Comentario test
+        //Comentario test 2
         JPanel topPanel = new JPanel();
         topPanel.add(panelRegistro);
         Color vinotinto = new Color(153, 0, 0);
