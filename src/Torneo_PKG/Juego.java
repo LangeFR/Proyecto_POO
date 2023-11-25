@@ -1,6 +1,8 @@
 package Torneo_PKG;
 
-public abstract class Juego {
+import java.io.Serializable;
+
+public abstract class Juego implements Serializable{
     String nombre;
     String casaMatriz;
     int cantjugadores;

@@ -1,8 +1,9 @@
 package Torneo_PKG;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Jugador {
+public class Jugador implements Serializable{
     private String nombre;
     private String correo;
     private String nickName;
@@ -70,21 +71,41 @@ public class Jugador {
 
     /*
      * Recibe un juego y retorna el mayor puntaje
-     * -----------------------------------------------------------------
+     * -----------------------------------------------------------------Revisar
      */
     public int mejorPuntaje(Juego juego){
-        //Por implementar
-        return -1;
+        int puntajeMax = 0;
+
+        for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
+            
+            if(juego.getClass().isInstance(partidas.get(partidaActual).getJuego()))
+                if(partidas.get(partidaActual).getPuntaje() > puntajeMax)
+                    puntajeMax = partidas.get(partidaActual).getPuntaje();
+            
+        }
+
+        return puntajeMax;
     }
 
     /*
      * Recibe un juego e identifica el mayor puntaje
      * Retorna la partida con dicho puntaje
-     * -----------------------------------------------------------------
+     * -----------------------------------------------------------------Revisar
      */
     public Partida mejorPartida(Juego juego){
-        //Por implementar
-        return null;
+        int puntajeMax = 0;
+        int posMax = 0;
+
+        for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
+            
+            if(juego.getClass().isInstance(partidas.get(partidaActual).getJuego()))
+                if(partidas.get(partidaActual).getPuntaje() > puntajeMax)
+                    puntajeMax = partidas.get(partidaActual).getPuntaje();
+                    posMax = partidaActual;
+            
+        }
+
+        return partidas.get(posMax);
     }
 
     /*
@@ -108,11 +129,19 @@ public class Jugador {
     /*
      * Recibe un juego
      * Retorna la cantidad de partidas jugadas de ese juego
-     * -----------------------------------------------------------------
+     * -----------------------------------------------------------------Revisar
      */
     public int cantidadPartidas(Juego juego){
-        //por implementar
-        return -1;
+        int partidasTotales = 0;
+
+        for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
+            
+            if(juego.getClass().isInstance(partidas.get(partidaActual).getJuego()))
+                partidasTotales++;
+            
+        }
+
+        return partidasTotales;
     }
 
     /*
@@ -132,11 +161,19 @@ public class Jugador {
     /*
      * Recibe un juego
      * Retorna la cantidad de horas jugadas de ese juego
-     * -----------------------------------------------------------------
+     * -----------------------------------------------------------------Revisar
      */
     public int horasJugadas(Juego juego){
-        //por implementar
-        return -1;
+        int horasTotal = 0;
+
+        for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
+            
+            if(juego.getClass().isInstance(partidas.get(partidaActual).getJuego()))
+                horasTotal += partidas.get(partidaActual).getTiempo() / 3600;
+            
+        }
+
+        return horasTotal;
     }
 
 }

@@ -1,6 +1,8 @@
 package Torneo_PKG;
 
-public class Partida {
+import java.io.Serializable;
+
+public class Partida implements Serializable{
     String fecha;
     int tiempo;
     int puntaje;
@@ -45,3 +47,4 @@ public class Partida {
     }
     
 }
+
