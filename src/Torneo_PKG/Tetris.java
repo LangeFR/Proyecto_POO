@@ -9,6 +9,10 @@ public class Tetris extends Juego {
         super(nombre, casaMatriz, cantjugadores, tipoJuego);
     }
 
+    /*
+     * Sistema de puntajes
+     * Va aumentando progresivamente dependiendo del numero de filas despejadas
+     */
     public int definirPuntos(int filledRows){
         if(filledRows < 10)
             return 5;
