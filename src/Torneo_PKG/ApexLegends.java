@@ -12,4 +12,10 @@ public class ApexLegends extends Juego{
     public ApexLegends(String nombre, String casaMatriz, int cantjugadores, String tipoJuego) {
         this(nombre, casaMatriz, cantjugadores, tipoJuego, 0, 0);
     }
+
+    public int getKills() {return kills;}
+    public int getDeaths() {return deaths;}
+
+    public void setKills(int kills) {this.kills = kills;}
+    public void setDeaths(int deaths) {this.deaths = deaths;}
 }
