@@ -20,4 +20,16 @@ public class Ajedrez extends Juego{
      * Setters
      */
     public void setPuntaje(int puntaje){this.puntaje = puntaje;}
+
+    /*
+     * Sistema de puntajes
+     * Si es victoria, asigna 10 puntos, si empate 5 puntos, si derrota 0 puntos
+     */
+    public int definirPuntaje(int res){
+        if(res == 1)
+            return 10;
+        else if(res == 0)
+            return 5;
+        return 0;
+    }
 }

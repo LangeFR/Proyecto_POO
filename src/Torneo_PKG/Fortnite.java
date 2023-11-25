@@ -28,4 +28,12 @@ public class Fortnite extends Juego{
      */
     public void setKills(int puesto) {this.puesto = puesto;}
     public void setPuntaje(int puntaje){this.puntaje = puntaje;}
+
+    /*
+     * Sistema de puntajes
+     * Puestos del 1-100, asigna un punto por puesto avanzado
+     */
+    public int definirPuntaje(){
+        return 101 - puesto;
+    }
 }

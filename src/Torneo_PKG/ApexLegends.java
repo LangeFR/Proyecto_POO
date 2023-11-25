@@ -31,4 +31,20 @@ public class ApexLegends extends Juego{
     public void setKills(int kills) {this.kills = kills;}
     public void setDeaths(int deaths) {this.deaths = deaths;}
     public void setPuntaje(int puntaje){this.puntaje = puntaje;}
+
+    /*
+     * Sistema de Puntajes
+     * Kill = 10 puntos - Death = -6 puntos
+     * No es posible tener puntaje negativo*
+     */
+    public int definirPuntos(){
+        int puntosKill = kills * 10;
+        int puntosDeath = deaths * 6;
+
+        int total = puntosKill - puntosDeath;
+
+        if(total >= 0)
+            return total;
+        return 0;
+    }
 }
