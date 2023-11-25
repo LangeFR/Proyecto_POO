@@ -71,7 +71,6 @@ public class Jugador implements Serializable{
 
     /*
      * Recibe un juego y retorna el mayor puntaje
-     * -----------------------------------------------------------------Revisar
      */
     public int mejorPuntaje(Juego juego){
         int puntajeMax = 0;
@@ -90,7 +89,6 @@ public class Jugador implements Serializable{
     /*
      * Recibe un juego e identifica el mayor puntaje
      * Retorna la partida con dicho puntaje
-     * -----------------------------------------------------------------Revisar
      */
     public Partida mejorPartida(Juego juego){
         int puntajeMax = 0;
@@ -111,11 +109,82 @@ public class Jugador implements Serializable{
     /*
      * No recibe nada.
      * Retorna el juego con mayor puntaje 
-     * -----------------------------------------------------------------
      */
     public Juego mejorJuego(){
-        //por implementar
-        return null;
+        int puntajeFortnite = 0;
+        int puntajeAjedrez = 0;
+        int puntajeApexLegends = 0;
+        int puntajeTetris = 0;
+
+        Fortnite juegoFortnite = null;
+        Ajedrez juegoAjedrez = null;
+        ApexLegends juegoApex = null;
+        Tetris juegoTetris = null;
+
+        /*
+         * Itera por todas las partidas del jugador
+         * Identifica el juego especifico usando polimorfismo y le añade el puntaje al contador respectivo
+         * 
+         * Ademas almacena el tipo de juego para retornar
+         */
+        for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
+            Partida partida = partidas.get(partidaActual);
+            
+            //Contador Fortnite
+            if(partida.getJuego() instanceof Fortnite){
+                puntajeFortnite += partida.getPuntaje();
+
+                //Guarda el juego de las partidas de Fortnite
+                if(juegoFortnite == null)
+                    juegoFortnite = (Fortnite) partida.getJuego();
+            }
+
+            //Contador Ajedrez
+            else if(partida.getJuego() instanceof Ajedrez){
+                puntajeAjedrez += partida.getPuntaje();
+
+                //Guarda el juego de las partidas de Ajedrez
+                if(juegoFortnite == null)
+                    juegoAjedrez = (Ajedrez) partida.getJuego();
+            }
+
+            //Contador ApexLegends
+            else if(partida.getJuego() instanceof ApexLegends){
+                puntajeApexLegends += partida.getPuntaje();
+
+                //Guarda el juego de las partidas de Apex Legends
+                if(juegoFortnite == null)
+                    juegoApex = (ApexLegends) partida.getJuego();
+            }
+
+            //Contador Tetris
+            else if(partida.getJuego() instanceof Tetris){
+                puntajeTetris += partida.getPuntaje();
+
+                //Guarda el juego de las partidas de Tetris
+                if(juegoFortnite == null)
+                    juegoTetris = (Tetris) partida.getJuego();
+            }
+        }
+
+        /*
+         * Compara los puntajes de cada juego y almacena el mejor juego
+         * Luego lo retorna
+         */
+        Juego mejorJuego = null;
+
+        if (puntajeFortnite >= puntajeAjedrez && puntajeFortnite >= puntajeApexLegends && 
+            puntajeFortnite >= puntajeTetris) {
+            mejorJuego = juegoFortnite;
+        } else if (puntajeAjedrez >= puntajeApexLegends && puntajeAjedrez >= puntajeTetris) {
+            mejorJuego = juegoAjedrez;
+        } else if (puntajeApexLegends >= puntajeTetris) {
+            mejorJuego = juegoApex;
+        } else {
+            mejorJuego = juegoTetris;
+        }
+
+        return mejorJuego;
     }
 
     /*
@@ -129,7 +198,6 @@ public class Jugador implements Serializable{
     /*
      * Recibe un juego
      * Retorna la cantidad de partidas jugadas de ese juego
-     * -----------------------------------------------------------------Revisar
      */
     public int cantidadPartidas(Juego juego){
         int partidasTotales = 0;
@@ -161,16 +229,15 @@ public class Jugador implements Serializable{
     /*
      * Recibe un juego
      * Retorna la cantidad de horas jugadas de ese juego
-     * -----------------------------------------------------------------Revisar
      */
     public int horasJugadas(Juego juego){
         int horasTotal = 0;
 
         for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
+            Partida partida = partidas.get(partidaActual);
             
-            if(juego.getClass().isInstance(partidas.get(partidaActual).getJuego()))
+            if(juego.getClass().isInstance(partida.getJuego()))
                 horasTotal += partidas.get(partidaActual).getTiempo() / 3600;
-            
         }
 
         return horasTotal;

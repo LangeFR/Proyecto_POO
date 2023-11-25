@@ -17,7 +17,9 @@ public class App {
         jug1.agregarPartida(par2);
         jug1.agregarPartida(par3);
 
-        System.out.println(jug1.horasJugadas(juego));
-        System.out.println(jug1.horasJugadas(juego2));
+        //System.out.println(jug1.horasJugadas(juego));
+        //System.out.println(jug1.horasJugadas(juego2));
+
+        Juego mejorJuego = jug1.mejorJuego();
     }
 }
