@@ -43,6 +43,7 @@ public PanelJugadores() {
     add(lJugador);
     add(tJugador);
     add(bConsultar);
+    bConsultar.setBackground(Color.YELLOW);
 
     // Agregar el JLabel de la imagen al panel
     add(imagenLabel);
