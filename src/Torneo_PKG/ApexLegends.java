@@ -1,8 +1,9 @@
 package Torneo_PKG;
 
 public class ApexLegends extends Juego{
-    int kills;
-    int deaths;
+    private int kills;
+    private int deaths;
+    private int puntaje;
 
     public ApexLegends(String nombre, String casaMatriz, int cantjugadores, String tipoJuego, int kills, int deaths) {
         super(nombre, casaMatriz, cantjugadores, tipoJuego);
@@ -15,7 +16,9 @@ public class ApexLegends extends Juego{
 
     public int getKills() {return kills;}
     public int getDeaths() {return deaths;}
+    public int getPuntaje(){return puntaje;}
 
     public void setKills(int kills) {this.kills = kills;}
     public void setDeaths(int deaths) {this.deaths = deaths;}
+    public void setPuntaje(int puntaje){this.puntaje = puntaje;}
 }
