@@ -1,21 +1,31 @@
 package Torneo_PKG;
 
 public class Fortnite extends Juego{
-    private int kills;
+    private int puesto;
     private int puntaje;
 
-    public Fortnite(String nombre, String casaMatriz, int cantjugadores, String tipoJuego, int kills) {
+    /*
+     * Constructor recibe atributos de Juego y puesto del jugador
+     * Si no recibe kills, asigna 0
+     */
+    public Fortnite(String nombre, String casaMatriz, int cantjugadores, String tipoJuego, int puesto) {
         super(nombre, casaMatriz, cantjugadores, tipoJuego);
-        this.kills = kills;
+        this.puesto = puesto;
         this.puntaje = 0;
     }
     public Fortnite(String nombre, String casaMatriz, int cantjugadores, String tipoJuego) {
         this(nombre, casaMatriz, cantjugadores, tipoJuego, 0);
     }
 
-    public int getKills() {return kills;}
+    /*
+     * Getters
+     */
+    public int getKills() {return puesto;}
     public int getPuntaje(){return puntaje;}
 
-    public void setKills(int kills) {this.kills = kills;}
+    /*
+     * Setters
+     */
+    public void setKills(int puesto) {this.puesto = puesto;}
     public void setPuntaje(int puntaje){this.puntaje = puntaje;}
 }
