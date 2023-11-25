@@ -57,11 +57,15 @@ public class Jugador {
     /*
      * Recibe un juego y suma el total de puntos
      * Retorna la suma de puntos
-     * -----------------------------------------------------------------
      */
     public int puntajeAcumulado(Juego juego){
-        //Por implementar
-        return -1;
+        int puntajeTotal = 0;
+
+        for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
+            puntajeTotal += partidas.get(partidaActual).getPuntaje();
+        }
+
+        return puntajeTotal;
     }
 
     /*
@@ -96,11 +100,9 @@ public class Jugador {
     /*
      * No recibe nada. 
      * Retorna la cantidad de partidas totales (en los 4 juegos) del jugador
-     * -----------------------------------------------------------------
      */
     public int cantidadPartidas(){
-        //por implementar
-        return -1;
+        return partidas.size();
     }
 
     /*
@@ -116,11 +118,15 @@ public class Jugador {
     /*
      * No recibe nada
      * Retorna la cantidad de horas jugadas totales (en los 4 juegos) del jugador
-     * -----------------------------------------------------------------
      */
     public int horasJugadas(){
-        //por implementar;
-        return -1;
+        int horasTotal = 0;
+
+        for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
+            horasTotal += partidas.get(partidaActual).getTiempo() / 3600;
+        }
+
+        return horasTotal;
     }
 
     /*
