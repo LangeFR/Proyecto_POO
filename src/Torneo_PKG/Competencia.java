@@ -1,8 +1,9 @@
 package Torneo_PKG;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Competencia {
+public class Competencia implements Serializable{
     private ArrayList<Jugador> jugadores;
     private ArrayList<Juego> juegos;
 

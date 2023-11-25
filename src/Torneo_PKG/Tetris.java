@@ -1,6 +1,6 @@
 package Torneo_PKG;
 
-public class Tetris extends Juego {
+public class Tetris extends Juego{
     /*
      * Constructor recibe atributos de Juego y filas completadas
      * Si no recibe filas, asigna 0
