@@ -1,8 +1,5 @@
 package Interfaz;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,7 +11,7 @@ public class InterfazTorneo extends JFrame {
 
     public InterfazTorneo() {
         setTitle("Torneo de videojuegos");
-        setSize(1000, 700);
+        setSize(1050, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Estos son los 4 paneles principales
@@ -22,13 +19,13 @@ public class InterfazTorneo extends JFrame {
         panelJuegos = new PanelJuegos();
         panelJugadores = new PanelJugadores();
         panelModificar = new PanelModificar();
-
         setLayout(new BorderLayout());
 
         // Panel superior
         JPanel topPanel = new JPanel();
         topPanel.add(panelRegistro);
-        topPanel.setBackground(Color.YELLOW);
+        Color vinotinto = new Color(153, 0, 0);
+        topPanel.setBackground(vinotinto);
         add(topPanel, BorderLayout.NORTH);
 
         // Panel central
@@ -41,6 +38,7 @@ public class InterfazTorneo extends JFrame {
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(panelModificar);
         add(bottomPanel, BorderLayout.SOUTH);
+        bottomPanel.setBackground(vinotinto);
     }
 
     public static void main(String[] args) {

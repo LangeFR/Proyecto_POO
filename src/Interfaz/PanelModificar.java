@@ -1,18 +1,30 @@
 package Interfaz;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.*;
 
 
 public class PanelModificar extends JPanel{
+    private JButton bModificarJugador;
+    private JButton bModificarPartida;
 
     public PanelModificar() {
         setLayout(new FlowLayout());
-        TitledBorder border = BorderFactory.createTitledBorder("Navegación");
-        border.setTitleColor(Color.ORANGE);
-        setBorder(border);
+        Color vinotinto = new Color(153, 0, 0);
+        setBackground(vinotinto);
+        
+    bModificarJugador = new JButton("Modificar información de jugador");
+    bModificarJugador.setBackground(Color.YELLOW);
+    bModificarPartida = new JButton("Modificar información de partida");
+    bModificarPartida.setBackground(Color.YELLOW);
+
+    add(bModificarJugador);
+    add(bModificarPartida);
     }
+
+
+    
+
+
     
 }
