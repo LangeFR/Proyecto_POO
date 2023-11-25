@@ -21,6 +21,13 @@ public class InterfazTorneo extends JFrame {
         panelModificar = new PanelModificar();
         setLayout(new BorderLayout());
 
+
+
+
+
+
+
+        
         // Panel superior
         //Comentario test
         //Comentario test 2
