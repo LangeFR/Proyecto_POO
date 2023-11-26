@@ -38,7 +38,7 @@ public class InterfazTorneo extends JFrame {
         competencia.agregarJuego(tetris);
 
         //Estos son los 4 paneles principales
-        panelRegistro = new PanelRegistro();
+        panelRegistro = new PanelRegistro(this);
         panelJuegos = new PanelJuegos();
         panelJugadores = new PanelJugadores();
         panelModificar = new PanelModificar();
@@ -47,8 +47,8 @@ public class InterfazTorneo extends JFrame {
         // Panel superior
         JPanel topPanel = new JPanel();
         topPanel.add(panelRegistro);
-        Color vinotinto = new Color(153, 0, 0);
-        topPanel.setBackground(vinotinto);
+        Color moradoOscuro = new Color(102, 0, 102);
+        topPanel.setBackground(moradoOscuro);
         add(topPanel, BorderLayout.NORTH);
 
         // Panel central
@@ -61,7 +61,7 @@ public class InterfazTorneo extends JFrame {
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(panelModificar);
         add(bottomPanel, BorderLayout.SOUTH);
-        bottomPanel.setBackground(vinotinto);
+        bottomPanel.setBackground(moradoOscuro);
     }
 
     public static void main(String[] args) {
@@ -70,6 +70,8 @@ public class InterfazTorneo extends JFrame {
     }
 
     //Lógica para el botón de consultar.
+
+
     public void consultar() {
         if (competencia == null || competencia.getJugador(actual) == null) {
             JOptionPane.showMessageDialog(this, "Error: Jugador no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -90,6 +92,7 @@ public class InterfazTorneo extends JFrame {
     }
 
 
+    
     public void eFortnite(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getName();
@@ -139,6 +142,25 @@ public class InterfazTorneo extends JFrame {
 
         //Limpia los campos para recibir un nuevo inscrito
         panelRegistro.limpiarCampos();
+    }
+
+    public void eTetris() {
+        if (panelRegistro != null && competencia != null) {
+            String nombre = panelRegistro.getNombre();
+            String nickName = panelRegistro.getNickname();
+            String correo = panelRegistro.getCorreo();
+
+            Jugador te = new Jugador(nombre, nickName, correo);
+            te.setNombre(nombre);
+            te.setNickName(nickName);
+            te.setCorreo(correo);
+
+            competencia.agregarJugador(te);
+            panelRegistro.limpiarCampos();
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error: panelRegistro o competencia es null", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
 

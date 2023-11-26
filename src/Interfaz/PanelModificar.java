@@ -10,8 +10,8 @@ public class PanelModificar extends JPanel{
 
     public PanelModificar() {
         setLayout(new FlowLayout());
-        Color vinotinto = new Color(153, 0, 0);
-        setBackground(vinotinto);
+        Color moradoOscuro = new Color(102, 0, 102);
+        setBackground(moradoOscuro);
 
     bModificarJugador = new JButton("Modificar información de jugador");
     bModificarJugador.setBackground(Color.YELLOW);
