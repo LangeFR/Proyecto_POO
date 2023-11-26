@@ -145,23 +145,24 @@ public class InterfazTorneo extends JFrame {
     }
 
     public void eTetris() {
-        if (panelRegistro != null && competencia != null) {
-            String nombre = panelRegistro.getNombre();
-            String nickName = panelRegistro.getNickname();
-            String correo = panelRegistro.getCorreo();
-
+        String nombre = panelRegistro.getNombre();
+        String nickName = panelRegistro.getNickname();
+        String correo = panelRegistro.getCorreo();
+    
+        // Verificar que los campos no estén en blanco
+        if (nombre.isEmpty() || nickName.isEmpty() || correo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
             Jugador te = new Jugador(nombre, nickName, correo);
             te.setNombre(nombre);
             te.setNickName(nickName);
             te.setCorreo(correo);
-
             competencia.agregarJugador(te);
             panelRegistro.limpiarCampos();
             JOptionPane.showMessageDialog(this, "Jugador añadido con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Error: panelRegistro o competencia es null", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
 }
 
 

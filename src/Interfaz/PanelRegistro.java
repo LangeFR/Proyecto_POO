@@ -104,6 +104,8 @@ public class PanelRegistro extends JPanel implements ActionListener{
     public void actionPerformed (ActionEvent evento){
       String command = evento.getActionCommand();
       switch (command) {
+          case FORTNITE:
+              principal.eFortnite();
           case TETRIS:
               principal.eTetris();
       }
