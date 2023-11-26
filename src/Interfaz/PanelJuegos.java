@@ -16,6 +16,7 @@ public class PanelJuegos extends JPanel{
         border.setTitleColor(Color.BLACK);
         setBorder(border);
         setBackground(Color.WHITE);
+        
 
         //Inicializamos los botones y el label
         bFortnite = new JButton("");

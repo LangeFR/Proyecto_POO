@@ -38,7 +38,7 @@ public class PanelRegistro extends JPanel implements ActionListener{
         tNombre = new JTextField("");
         tNickname = new JTextField("");
         tCorreo = new JTextField("");
-        tNombre.setForeground(Color.BLACK);
+        tNombre.setForeground(Color.YELLOW);
 
         bFORTNITE = new JButton("Fortnite");
         bFORTNITE.setBackground(Color.YELLOW);
