@@ -93,17 +93,16 @@ public class InterfazTorneo extends JFrame {
         String mensaje2 = "El campeón del torneo es" + competencia.mejorJugador();
         JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
     }
-
-
     
     public void eFortnite(){
         //Recibe el input del usuario para los atributos
-        String nombre = panelRegistro.getName();
+        String nombre = panelRegistro.getNombre();
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
 
-        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
+        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         else{
 
             //Crea un nuevo jugador con dichos atributos
@@ -147,9 +146,61 @@ public class InterfazTorneo extends JFrame {
             panelRegistro.limpiarCampos();
         }
     }
+        public void eAjedrez(){
+        //Recibe el input del usuario para los atributos
+        String nombre = panelRegistro.getNombre();
+        String correo = panelRegistro.getCorreo();
+        String nickname = panelRegistro.getNickname();
+
+        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+
+            //Crea un nuevo jugador con dichos atributos
+            Jugador jugador = new Jugador(nombre, correo, nickname);
+
+            //Trae la lista de jugadores de competencia
+            ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
+            boolean flagCompetencia = true;
+
+            /*
+            * Verifica que el jugador no se encuentre inscrito en competencia
+            * Si no esta inscrito, lo añade 
+            */
+            for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++){
+                String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
+
+                if(correoActual.equals(correo))
+                    flagCompetencia = false;
+            }
+
+            if(flagCompetencia){
+                competencia.agregarJugador(jugador);
+                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+
+            /*
+            * Verifica que el jugador no se encuentre inscrito en Ajedrez
+            * Si no esta inscrito, lo añade 
+            */
+            if(!ajedrez.isInAjedrez(jugador)){
+                ajedrez.añadirJugadorAjedrez(jugador);
+                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Ajedrez", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Jugador ya registrado en Ajedrez", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+            //Limpia los campos para recibir un nuevo inscrito
+            panelRegistro.limpiarCampos();
+        }
+    }
     public void eTetris(){
         //Recibe el input del usuario para los atributos
-        String nombre = panelRegistro.getName();
+        String nombre = panelRegistro.getNombre();
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
 
@@ -200,7 +251,7 @@ public class InterfazTorneo extends JFrame {
 
         public void eApex(){
         //Recibe el input del usuario para los atributos
-        String nombre = panelRegistro.getName();
+        String nombre = panelRegistro.getNombre();
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
 

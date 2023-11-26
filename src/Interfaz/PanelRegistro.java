@@ -108,8 +108,6 @@ public class PanelRegistro extends JPanel implements ActionListener{
               principal.eFortnite();
           case TETRIS:
               principal.eTetris();
-          case AJEDREZ:
-              principal.eAjedrez();
           case APEX:
               principal.eApex();
       }
