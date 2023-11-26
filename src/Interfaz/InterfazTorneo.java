@@ -69,25 +69,25 @@ public class InterfazTorneo extends JFrame {
         ic.setVisible(true);
     }
     
-    //Lógica para el botón consultar
-// Lógica para el botón consultar
-public void consultar() {
-    //Se obtiene el jugador actual de la lista de competencia
-    Jugador j = competencia.getJugador(actual);
-    // Verifica si el jugador está en la lista
-    if (competencia.getJugadores().contains(j)) {
-        // Si está en la lista, mostramos las estadísticas
-        String mensaje = "Estadísticas del Jugador:\n\n" +
-                "Cantidad de Partidas: " + j.cantidadPartidas() + "\n" +
-                "Mejor Puntaje: " + j.mejorJuego() + "\n" +
-                "Puntaje Acumulado: " + j.puntajeAcumulado();
+    // Lógica para el botón consultar
+    public void consultar() {
+        //Se obtiene el jugador actual de la lista de competencia
+        Jugador j = competencia.getJugador(actual);
+        
+        // Verifica si el jugador está en la lista
+        if (competencia.getJugadores().contains(j)) {
+            // Si está en la lista, mostramos las estadísticas
+            String mensaje = "Estadísticas del Jugador:\n\n" +
+                    "Cantidad de Partidas: " + j.cantidadPartidas() + "\n" +
+                    "Mejor Puntaje: " + j.mejorJuego() + "\n" +
+                    "Puntaje Acumulado: " + j.puntajeAcumulado();
 
-        JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Jugador", JOptionPane.INFORMATION_MESSAGE);
-    } else {
-        // Si no está en la lista, mostramos un mensaje de error
-        JOptionPane.showMessageDialog(this, "Error: Jugador no encontrado en la lista de competencia", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Jugador", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // Si no está en la lista, mostramos un mensaje de error
+            JOptionPane.showMessageDialog(this, "Error: Jugador no encontrado en la lista de competencia", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
-}
 
 
     public void ecampeon(){
