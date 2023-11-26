@@ -68,23 +68,27 @@ public class InterfazTorneo extends JFrame {
         InterfazTorneo ic = new InterfazTorneo();
         ic.setVisible(true);
     }
-
-    //Lógica para el botón de consultar.
-
-
-    public void consultar() {
-        if (competencia == null || competencia.getJugador(actual) == null) {
-            JOptionPane.showMessageDialog(this, "Error: Jugador no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        Jugador j = competencia.getJugador(actual);
+    
+    //Lógica para el botón consultar
+// Lógica para el botón consultar
+public void consultar() {
+    //Se obtiene el jugador actual de la lista de competencia
+    Jugador j = competencia.getJugador(actual);
+    // Verifica si el jugador está en la lista
+    if (competencia.getJugadores().contains(j)) {
+        // Si está en la lista, mostramos las estadísticas
         String mensaje = "Estadísticas del Jugador:\n\n" +
                 "Cantidad de Partidas: " + j.cantidadPartidas() + "\n" +
                 "Mejor Puntaje: " + j.mejorJuego() + "\n" +
                 "Puntaje Acumulado: " + j.puntajeAcumulado();
-    
+
         JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Jugador", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        // Si no está en la lista, mostramos un mensaje de error
+        JOptionPane.showMessageDialog(this, "Error: Jugador no encontrado en la lista de competencia", "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
+
 
     public void ecampeon(){
         String mensaje2 = "El campeón del torneo es" + competencia.mejorJugador();
@@ -194,6 +198,58 @@ public class InterfazTorneo extends JFrame {
             panelRegistro.limpiarCampos();
         }
     }
+
+        public void eApex(){
+        //Recibe el input del usuario para los atributos
+        String nombre = panelRegistro.getName();
+        String correo = panelRegistro.getCorreo();
+        String nickname = panelRegistro.getNickname();
+
+        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
+            JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
+        else{
+
+            //Crea un nuevo jugador con dichos atributos
+            Jugador jugador = new Jugador(nombre, correo, nickname);
+
+            //Trae la lista de jugadores de competencia
+            ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
+            boolean flagCompetencia = true;
+
+            /*
+            * Verifica que el jugador no se encuentre inscrito en competencia
+            * Si no esta inscrito, lo añade 
+            */
+            for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++){
+                String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
+
+                if(correoActual.equals(correo))
+                    flagCompetencia = false;
+            }
+            if(flagCompetencia){
+                competencia.agregarJugador(jugador);
+                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+
+            /*
+            * Verifica que el jugador no se encuentre inscrito en Apex Legends
+            * Si no esta inscrito, lo añade 
+            */
+            if(!apexLegends.isInApexLegends(jugador)){
+                apexLegends.añadirJugadorApexLegends(jugador);;
+                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Apex Legends", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Jugador ya registrado en Apex Legends", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+            //Limpia los campos para recibir un nuevo inscrito
+            panelRegistro.limpiarCampos();
+        }
+    }
+
 
 }
 
