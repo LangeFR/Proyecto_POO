@@ -71,6 +71,21 @@ public class InterfazTorneo extends JFrame {
     }
 
 
+    public void eFortnite(){
+        String nombre = panelRegistro.getName();
+        String correo = panelRegistro.getCorreo();
+        String nickname = panelRegistro.getNickname();
+
+        Jugador jugador = new Jugador(nombre, correo, nickname);
+
+        if(){
+            //Añadir jugador a competencia
+        }
+
+        //añadir jugador a Fortnite
+
+        panelRegistro.LimpiarCampos();
+    }
 }
 
 
