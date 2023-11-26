@@ -144,26 +144,57 @@ public class InterfazTorneo extends JFrame {
             panelRegistro.limpiarCampos();
         }
     }
-
-    public void eTetris() {
-        String nombre = panelRegistro.getNombre();
-        String nickName = panelRegistro.getNickname();
+    public void eTetris(){
+        //Recibe el input del usuario para los atributos
+        String nombre = panelRegistro.getName();
         String correo = panelRegistro.getCorreo();
-    
-        // Verificar que los campos no estén en blanco
-        if (nombre.isEmpty() || nickName.isEmpty() || correo.isEmpty()) {
+        String nickname = panelRegistro.getNickname();
+
+        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
             JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            Jugador te = new Jugador(nombre, nickName, correo);
-            te.setNombre(nombre);
-            te.setNickName(nickName);
-            te.setCorreo(correo);
-            competencia.agregarJugador(te);
+        else{
+
+            //Crea un nuevo jugador con dichos atributos
+            Jugador jugador = new Jugador(nombre, correo, nickname);
+
+            //Trae la lista de jugadores de competencia
+            ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
+            boolean flagCompetencia = true;
+
+            /*
+            * Verifica que el jugador no se encuentre inscrito en competencia
+            * Si no esta inscrito, lo añade 
+            */
+            for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++){
+                String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
+
+                if(correoActual.equals(correo))
+                    flagCompetencia = false;
+            }
+            if(flagCompetencia){
+                competencia.agregarJugador(jugador);
+                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+
+            /*
+            * Verifica que el jugador no se encuentre inscrito en Fortnite
+            * Si no esta inscrito, lo añade 
+            */
+            if(!tetris.isInTetris(jugador)){
+                tetris.añadirJugadorTetris(jugador);
+                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Tetris", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Jugador ya registrado en Tetris", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+            //Limpia los campos para recibir un nuevo inscrito
             panelRegistro.limpiarCampos();
-            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
+
 }
 
 
