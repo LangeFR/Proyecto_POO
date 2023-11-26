@@ -28,6 +28,21 @@ public class Tetris extends Juego{
     }
 
     /*
+     * Recibe un jugador y verifica si esta en la lista
+     * Retorna el valor verdad
+     */
+    public boolean isInTetrs(Jugador jugador){
+        String correo = jugador.getCorreo();
+
+        for(Jugador jugadorActual : jugadoresTetris){
+            if(jugadorActual.getCorreo().equals(correo))
+                return true;
+        }
+
+        return false;
+    }
+
+    /*
      * Sistema de puntajes
      * Va aumentando progresivamente dependiendo del numero de filas despejadas
      */

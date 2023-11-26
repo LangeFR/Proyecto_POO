@@ -28,6 +28,21 @@ public class ApexLegends extends Juego{
     }
 
     /*
+     * Recibe un jugador y verifica si esta en la lista
+     * Retorna el valor verdad
+     */
+    public boolean isInApexLegends(Jugador jugador){
+        String correo = jugador.getCorreo();
+
+        for(Jugador jugadorActual : jugadoresApexLegends){
+            if(jugadorActual.getCorreo().equals(correo))
+                return true;
+        }
+
+        return false;
+    }
+
+    /*
      * Sistema de Puntajes
      * Kill = 10 puntos - Death = -6 puntos
      * No es posible tener puntaje negativo*
