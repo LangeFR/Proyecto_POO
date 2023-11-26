@@ -31,7 +31,7 @@ public class Tetris extends Juego{
      * Recibe un jugador y verifica si esta en la lista
      * Retorna el valor verdad
      */
-    public boolean isInTetrs(Jugador jugador){
+    public boolean isInTetris(Jugador jugador){
         String correo = jugador.getCorreo();
 
         for(Jugador jugadorActual : jugadoresTetris){
