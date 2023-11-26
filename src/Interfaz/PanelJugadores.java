@@ -89,6 +89,20 @@ public class PanelJugadores extends JPanel implements ActionListener {
         b_cTetris.addActionListener(this);
         b_cApexLegends.addActionListener(this);
     }
+    
+    // Permitir acceso a la información (nombre del jugador)
+    public String getNombre() {
+        return tJugador.getText();
+    }
+
+    // Refrescar la Información
+    public void setNombre(String nombre) {
+        tJugador.setText(nombre);
+    }
+
+    public void limpiar_campos() {
+        tJugador.setText("");
+    }
 
     public void actionPerformed(ActionEvent evento) {
         String command = evento.getActionCommand();
@@ -114,17 +128,5 @@ public class PanelJugadores extends JPanel implements ActionListener {
         }
     }
 
-    // Permitir acceso a la información (nombre del jugador)
-    public String getNombre() {
-        return tJugador.getText();
-    }
 
-    // Refrescar la Información
-    public void setNombre(String nombre) {
-        tJugador.setText(nombre);
-    }
-
-    public void limpiar_campos() {
-        tJugador.setText("");
-    }
 }
