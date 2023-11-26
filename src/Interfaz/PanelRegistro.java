@@ -74,6 +74,22 @@ public class PanelRegistro extends JPanel implements ActionListener{
     }
 
 
+    public String getNombre(){
+      return tNombre.getText();
+    }
+    public String getCorreo(){
+      return tCorreo.getText();
+    }
+    public String getNickname(){
+      return tNickname.getText();
+    }
+
+    public void limpiarCampos(){
+      tNombre.setText("");
+      tCorreo.setText("");
+      tNickname.setText("");
+  }
+
     @Override
     public void actionPerformed(ActionEvent e) {
       // TODO Auto-generated method stub
