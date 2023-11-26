@@ -355,7 +355,6 @@ public class InterfazTorneo extends JFrame {
                 }
             }
         }
-    }
     
 
     
@@ -363,9 +362,9 @@ public class InterfazTorneo extends JFrame {
 
 
     public void eJugarFortnite(){
-        String fecha = JOptionPane.showInputDialog("Digite la fecha: ")
-        int tiempo 
-        int puntaje 
+        String fecha = JOptionPane.showInputDialog("Digite la fecha: ");
+        int tiempo = Integer.parseInt(JOptionPane.showInputDialog("Digite el tiempo: "));
+        int puntaje = Integer.parseInt(JOptionPane.showInputDialog("Digite el puesto: "));
 
     }
     public void eJugarAjedrez(){
