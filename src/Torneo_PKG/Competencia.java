@@ -69,4 +69,27 @@ public class Competencia implements Serializable{
 
         return jugadores.get(posMejor);
     }
+
+    /*
+     * Recibe un juego y retorna el mejor jugador en dicho juego
+     */
+    public Jugador mejorJugador(Juego juego){
+
+    }
+
+    /*
+     * No recibe nada
+     * Retorna el jugador con mayor numero de horas jugadas
+     */
+    public Jugador adicto (){
+
+    }
+
+    /*
+     * No recibe nada
+     * Retorna el jugador con mayor numero de partidas
+     */
+    public jugador persistente (){
+
+    }
 }

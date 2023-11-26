@@ -134,7 +134,7 @@ public class InterfazTorneo extends JFrame {
             * Si no esta inscrito, lo añade 
             */
             if(!fortnite.isInFortnite(jugador)){
-                fortnite.agregarJugadorFortnite(jugador);
+                fortnite.añadirJugadorFortnite(jugador);
                 JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Fortnite", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
             else

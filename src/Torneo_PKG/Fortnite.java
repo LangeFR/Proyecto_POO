@@ -22,7 +22,7 @@ public class Fortnite extends Juego{
      * Recibe un jugador y lo añade a la lista
      * No retorna nada
      */
-    public void agregarJugadorFortnite(Jugador jugador) {
+    public void añadirJugadorFortnite(Jugador jugador) {
         jugadoresFortnite.add(jugador);
     }
 
