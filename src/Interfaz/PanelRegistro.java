@@ -99,7 +99,7 @@ public class PanelRegistro extends JPanel implements ActionListener{
       tNombre.setText("");
       tCorreo.setText("");
       tNickname.setText("");
-  }
+    }
 
     public void actionPerformed (ActionEvent evento){
       String command = evento.getActionCommand();
@@ -107,9 +107,6 @@ public class PanelRegistro extends JPanel implements ActionListener{
           case TETRIS:
               principal.eTetris();
       }
+    }
   }
-
-
-      
     
-}
