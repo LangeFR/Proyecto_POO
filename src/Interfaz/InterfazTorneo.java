@@ -95,59 +95,54 @@ public class InterfazTorneo extends JFrame {
         JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
     }
     
-    public void eFortnite(){
-        //Recibe el input del usuario para los atributos
+    public void eFortnite() {
+        // Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
-
+    
+        // Verifica que los campos no estén en blanco
         if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-
-            //Crea un nuevo jugador con dichos atributos
+        } else {
+            // Crea un nuevo jugador con dichos atributos
             Jugador jugador = new Jugador(nombre, correo, nickname);
-
-            //Trae la lista de jugadores de competencia
+    
+            // Trae la lista de jugadores de competencia
             ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
             boolean flagCompetencia = true;
-
-            /*
-            * Verifica que el jugador no se encuentre inscrito en competencia
-            * Si no esta inscrito, lo añade 
-            */
-            for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++){
+    
+            // Verifica que el jugador no se encuentre inscrito en competencia
+            for (int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++) {
                 String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
-
-                if(correoActual.equals(correo))
+    
+                if (correoActual.equals(correo)) {
                     flagCompetencia = false;
+                }
             }
-
-            if(flagCompetencia){
+    
+            if (flagCompetencia) {
+                // Agrega al jugador a la competencia
                 competencia.agregarJugador(jugador);
                 JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else
+            } else {
                 JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-
-            /*
-            * Verifica que el jugador no se encuentre inscrito en Fortnite
-            * Si no esta inscrito, lo añade 
-            */
-            if(!fortnite.isInFortnite(jugador)){
+            }
+    
+            // Verifica que el jugador no se encuentre inscrito en Fortnite
+            if (!fortnite.isInFortnite(jugador)) {
                 fortnite.añadirJugadorFortnite(jugador);
                 JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Fortnite", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else
+            } else {
                 JOptionPane.showMessageDialog(this, "Jugador ya registrado en Fortnite", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-            //Limpia los campos para recibir un nuevo inscrito
+            }
+    
+            // Limpia los campos para recibir un nuevo inscrito
             panelRegistro.limpiarCampos();
         }
     }
-        public void eAjedrez(){
+    
+    public void eAjedrez(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
         String correo = panelRegistro.getCorreo();
@@ -157,7 +152,6 @@ public class InterfazTorneo extends JFrame {
             JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-
             //Crea un nuevo jugador con dichos atributos
             Jugador jugador = new Jugador(nombre, correo, nickname);
 
@@ -250,7 +244,7 @@ public class InterfazTorneo extends JFrame {
         }
     }
 
-        public void eApex(){
+    public void eApex(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
         String correo = panelRegistro.getCorreo();

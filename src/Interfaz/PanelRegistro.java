@@ -100,17 +100,22 @@ public class PanelRegistro extends JPanel implements ActionListener{
       tCorreo.setText("");
       tNickname.setText("");
     }
-
-    public void actionPerformed (ActionEvent evento){
+    public void actionPerformed(ActionEvent evento) {
       String command = evento.getActionCommand();
       switch (command) {
           case FORTNITE:
               principal.eFortnite();
+              break;
           case TETRIS:
               principal.eTetris();
+              break;
+          case AJEDREZ:
+              principal.eAjedrez();
+              break;
           case APEX:
               principal.eApex();
+              break;
       }
-    }
+  }
   }
     

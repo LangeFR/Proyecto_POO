@@ -42,9 +42,8 @@ public class PanelJugadores extends JPanel implements ActionListener {
         bCampeon = new JButton("Campeón del torneo");
 
         // Configuración de colores
-        Color azulClaro = new Color(0, 0, 182, 100);
-        bConsultar.setBackground(azulClaro);
-        bCampeon.setBackground(azulClaro);
+        bConsultar.setBackground(Color.YELLOW);
+        bCampeon.setBackground(Color.YELLOW);
 
         // Añadir botones de estadísticas de jugadores
         add(lStatsJugador);
@@ -89,7 +88,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
         b_cTetris.addActionListener(this);
         b_cApexLegends.addActionListener(this);
     }
-    
+
     // Permitir acceso a la información (nombre del jugador)
     public String getNombre() {
         return tJugador.getText();
