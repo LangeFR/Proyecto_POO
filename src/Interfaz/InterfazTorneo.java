@@ -50,7 +50,7 @@ public class InterfazTorneo extends JFrame {
         ic.setVisible(true);
     }
 
-    //Lógica para el botón de consultar
+    //Lógica para el botón de consultar.
     public void consultar() {
         if (competencia == null || competencia.getJugador(actual) == null) {
             JOptionPane.showMessageDialog(this, "Error: Jugador no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
