@@ -74,7 +74,17 @@ public class Competencia implements Serializable{
      * Recibe un juego y retorna el mejor jugador en dicho juego
      */
     public Jugador mejorJugador(Juego juego){
+        Jugador mejorJugador = null;
+        int maxPuntaje = 0;
 
+        for(Jugador jugadorActual : jugadores){
+            if(jugadorActual.puntajeAcumulado(juego) > maxPuntaje){
+                maxPuntaje = jugadorActual.horasJugadas();
+                mejorJugador = jugadorActual;
+            } 
+        }
+
+        return mejorJugador;
     }
 
     /*
@@ -82,14 +92,34 @@ public class Competencia implements Serializable{
      * Retorna el jugador con mayor numero de horas jugadas
      */
     public Jugador adicto (){
+        Jugador jugadorAdicto = null;
+        int maxHoras = 0;
 
+        for(Jugador jugadorActual : jugadores){
+            if(jugadorActual.horasJugadas() > maxHoras){
+                maxHoras = jugadorActual.horasJugadas();
+                jugadorAdicto = jugadorActual;
+            } 
+        }
+
+        return jugadorAdicto;
     }
 
     /*
      * No recibe nada
      * Retorna el jugador con mayor numero de partidas
      */
-    public jugador persistente (){
+    public Jugador persistente (){
+        Jugador jugadorPersistente = null;
+        int maxPartidas = 0;
 
+        for(Jugador jugadorActual : jugadores){
+            if(jugadorActual.cantidadPartidas() > maxPartidas){
+                maxPartidas = jugadorActual.cantidadPartidas();
+                jugadorPersistente = jugadorActual;
+            } 
+        }
+
+        return jugadorPersistente;
     }
 }
