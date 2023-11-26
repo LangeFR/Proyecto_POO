@@ -1,12 +1,30 @@
 package Torneo_PKG;
 
+import java.util.ArrayList;
+
 public class Tetris extends Juego{
+    private ArrayList<Jugador> jugadoresTetris;
+
     /*
      * Constructor recibe atributos de Juego y filas completadas
      * Si no recibe filas, asigna 0
      */
     public Tetris(String nombre, String casaMatriz, int cantjugadores, String tipoJuego) {
         super(nombre, casaMatriz, cantjugadores, tipoJuego);
+    }
+
+    /*
+     * Getter y Setter
+     */
+    public ArrayList<Jugador> getJugadoresTetris(){return jugadoresTetris;}
+    public void setJugadoresTetris(ArrayList<Jugador> jugadoresTetris){this.jugadoresTetris = jugadoresTetris;}
+
+    /*
+     * Recibe un jugador y lo añade a la lista
+     * No retorna nada
+     */
+    public void añadirJugadorTetris(Jugador jugador) {
+        jugadoresTetris.add(jugador);
     }
 
     /*
