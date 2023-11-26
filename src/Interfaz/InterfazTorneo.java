@@ -2,9 +2,13 @@ package Interfaz;
 import java.awt.*;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import Torneo_PKG.*;
 
 public class InterfazTorneo extends JFrame {
@@ -14,6 +18,7 @@ public class InterfazTorneo extends JFrame {
     private PanelModificar panelModificar;
     private int actual;
     private Competencia competencia;
+    private JComboBox<String> listaJugadores; // JComboBox para la lista de jugadores
 
     private Fortnite fortnite;
     private Ajedrez ajedrez;
@@ -26,6 +31,7 @@ public class InterfazTorneo extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Inicilizar juegos y competencia
+        listaJugadores = new JComboBox<>();
         competencia = new Competencia();
         fortnite = new Fortnite("Fortnite", "Epic Games", 100, "Last one Standing");
         ajedrez = new Ajedrez("Ajedrez", "None", 2, "1 vs 1");
@@ -41,7 +47,7 @@ public class InterfazTorneo extends JFrame {
         panelRegistro = new PanelRegistro(this);
         panelJuegos = new PanelJuegos(this);
         panelJugadores = new PanelJugadores();
-        panelModificar = new PanelModificar();
+        panelModificar = new PanelModificar(this);
         setLayout(new BorderLayout());
 
         // Panel superior
@@ -294,6 +300,66 @@ public class InterfazTorneo extends JFrame {
             panelRegistro.limpiarCampos();
         }
     }
+
+    public void eModificar() {
+        // Obtener el jugador seleccionado del JComboBox
+        String nombreJugadorSeleccionado = (String) listaJugadores.getSelectedItem();
+            // Buscar el jugador directamente en la lista de jugadores
+            Jugador jugadorSeleccionado = null;
+            for (Jugador jugador : competencia.getJugadores()) {
+                if (jugador.getNombre().equals(nombreJugadorSeleccionado)) {
+                    jugadorSeleccionado = jugador;
+                    break;
+                }
+            }
+    
+            if (jugadorSeleccionado != null) {
+                // Crear JTextFields para el nombre, correo y nickname
+                JTextField nombreField = new JTextField(10);
+                JTextField correoField = new JTextField(10);
+                JTextField nicknameField = new JTextField(10);
+    
+                // Asignar los valores actuales del jugador a los JTextFields
+                nombreField.setText(jugadorSeleccionado.getNombre());
+                correoField.setText(jugadorSeleccionado.getCorreo());
+                nicknameField.setText(jugadorSeleccionado.getNickName());
+    
+                // Crear el panel que contendrá los JTextFields
+                JPanel panel = new JPanel();
+                panel.setLayout(new GridLayout(4, 2));
+                panel.add(new JLabel("Nuevo Nombre:"));
+                panel.add(nombreField);
+                panel.add(new JLabel("Nuevo Correo:"));
+                panel.add(correoField);
+                panel.add(new JLabel("Nuevo Nickname:"));
+                panel.add(nicknameField);
+    
+                // Mostrar el cuadro de diálogo y obtener la respuesta del usuario
+                int result = JOptionPane.showConfirmDialog(null, panel,
+                        "Modificar Información del Jugador", JOptionPane.OK_CANCEL_OPTION);
+    
+                // Verificar si el usuario hizo clic en "OK"
+                if (result == JOptionPane.OK_OPTION) {
+                    // Obtener los nuevos valores ingresados por el usuario
+                    String nuevoNombre = nombreField.getText();
+                    String nuevoCorreo = correoField.getText();
+                    String nuevoNickname = nicknameField.getText();
+    
+                    // Modificar la información del jugador
+                    jugadorSeleccionado.setNombre(nuevoNombre);
+                    jugadorSeleccionado.setCorreo(nuevoCorreo);
+                    jugadorSeleccionado.setNickName(nuevoNickname);
+    
+                    // Mostrar mensaje de éxito
+                    JOptionPane.showMessageDialog(this, "Información del jugador modificada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+    }
+    
+
+    
+
 
 
     public void eJugarFortnite(){
