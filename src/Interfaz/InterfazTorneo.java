@@ -19,7 +19,7 @@ public class InterfazTorneo extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Estos son los 4 paneles principales
-        panelRegistro = new PanelRegistro();
+        panelRegistro = new PanelRegistro(this);
         panelJuegos = new PanelJuegos();
         panelJugadores = new PanelJugadores();
         panelModificar = new PanelModificar();
@@ -73,7 +73,7 @@ public class InterfazTorneo extends JFrame {
     }
 
 
-    public void eFortnite(){
+   /* public void eFortnite(){
         String nombre = panelRegistro.getName();
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
@@ -87,6 +87,26 @@ public class InterfazTorneo extends JFrame {
         //añadir jugador a Fortnite
 
         panelRegistro.LimpiarCampos();
+    }*/
+
+
+    public void eTetris() {
+        if (panelRegistro != null && competencia != null) {
+            String nombre = panelRegistro.getNombre();
+            String nickName = panelRegistro.getNickname();
+            String correo = panelRegistro.getCorreo();
+    
+            Jugador te = new Jugador(nombre, nickName, correo);
+            te.setNombre(nombre);
+            te.setNickName(nickName);
+            te.setCorreo(correo);
+
+            competencia.agregarJugador(te);
+            panelRegistro.limpiarCampos();
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error: panelRegistro o competencia es null", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
 

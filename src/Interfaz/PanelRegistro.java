@@ -15,6 +15,7 @@ public class PanelRegistro extends JPanel implements ActionListener{
     private JTextField tNickname;
     private JTextField tCorreo;
     private JButton bFORTNITE, bAJEDREZ, bTETRIS, bAPEX;
+    private InterfazTorneo principal;
 
     private static final String FORTNITE = "FORTNITE";
     private static final String AJEDREZ = "AJEDREZ";
@@ -22,8 +23,9 @@ public class PanelRegistro extends JPanel implements ActionListener{
     private static final String APEX = "APEX";
 
 
-    public PanelRegistro() {
+    public PanelRegistro(InterfazTorneo inter) {
         //GridLayout
+        principal = inter;
         setLayout(new GridLayout(2, 4));  
         TitledBorder border = BorderFactory.createTitledBorder("Registra tu usuario");
         border.setTitleColor(Color.BLACK);
@@ -38,7 +40,7 @@ public class PanelRegistro extends JPanel implements ActionListener{
         tNombre = new JTextField("");
         tNickname = new JTextField("");
         tCorreo = new JTextField("");
-        tNombre.setForeground(Color.YELLOW);
+        tNombre.setForeground(Color.BLACK);
 
         bFORTNITE = new JButton("Fortnite");
         bFORTNITE.setBackground(Color.YELLOW);
@@ -83,6 +85,15 @@ public class PanelRegistro extends JPanel implements ActionListener{
     public String getNickname(){
       return tNickname.getText();
     }
+    public void setNombre(String nombre){
+      tNombre.setText(nombre);
+    }
+    public void setNickName(String nickName){
+      tNickname.setText(nickName);
+    }
+    public void setCorreo(String correo){
+      tCorreo.setText(correo);
+    }
 
     public void limpiarCampos(){
       tNombre.setText("");
@@ -90,11 +101,13 @@ public class PanelRegistro extends JPanel implements ActionListener{
       tNickname.setText("");
   }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-      // TODO Auto-generated method stub
-      throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
+    public void actionPerformed (ActionEvent evento){
+      String command = evento.getActionCommand();
+      switch (command) {
+          case TETRIS:
+              principal.eTetris();
+      }
+  }
 
 
       
