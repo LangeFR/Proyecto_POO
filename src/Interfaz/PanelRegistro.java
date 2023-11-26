@@ -3,18 +3,23 @@ package Interfaz;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PanelRegistro extends JPanel{
+public class PanelRegistro extends JPanel implements ActionListener{
     private JLabel lNombre;
-    private JLabel lPartida;
+    private JLabel lNickname;
+    private JLabel lCorreo;
+    private JLabel espacio;
     private JTextField tNombre;
-    private JTextField tPartidaTextField;
-    private JButton bJUEGO1, bJUEGO2, bJUEGO3, bJUEGO4;
+    private JTextField tNickname;
+    private JTextField tCorreo;
+    private JButton bFORTNITE, bAJEDREZ, bTETRIS, bAPEX;
 
-    /*private static final String EJUEGO1 = "JUEGO1";
-    private static final String EJUEGO2= "JUEGO2";
-    private static final String EJUEGO3 = "JUEGO3";
-    private static final String EJUEGO4 = "JUEGO4";*/
+    private static final String FORTNITE = "FORTNITE";
+    private static final String AJEDREZ = "AJEDREZ";
+    private static final String TETRIS = "TETRIS";
+    private static final String APEX = "APEX";
 
 
     public PanelRegistro() {
@@ -25,33 +30,57 @@ public class PanelRegistro extends JPanel{
         setBorder(border);
 
         lNombre = new JLabel("Nombre:");
-        lPartida = new JLabel("Partidas:");
+        lNickname = new JLabel("Nickname:");
+        lCorreo = new JLabel("Correo:");
+        espacio = new JLabel("");
         lNombre.setForeground(Color.BLACK);
-        lPartida.setForeground(Color.BLACK);
 
-        tNombre = new JTextField("Carlos");
-        tPartidaTextField = new JTextField("5");
+        tNombre = new JTextField("");
+        tNickname = new JTextField("");
+        tCorreo = new JTextField("");
         tNombre.setForeground(Color.BLACK);
-        tPartidaTextField.setForeground(Color.BLACK);
 
-        bJUEGO1 = new JButton("Fortnite");
-        bJUEGO1.setBackground(Color.YELLOW);
-        bJUEGO2 = new JButton("Ajedrez");
-        bJUEGO2.setBackground(Color.YELLOW);
-        bJUEGO3 = new JButton("Tetris");
-        bJUEGO3.setBackground(Color.YELLOW);
-        bJUEGO4 = new JButton("Apex Legends");
-        bJUEGO4.setBackground(Color.YELLOW);
+        bFORTNITE = new JButton("Fortnite");
+        bFORTNITE.setBackground(Color.YELLOW);
+        bAJEDREZ = new JButton("Ajedrez");
+        bAJEDREZ.setBackground(Color.YELLOW);
+        bTETRIS = new JButton("Tetris");
+        bTETRIS.setBackground(Color.YELLOW);
+        bAPEX = new JButton("Apex Legends");
+        bAPEX.setBackground(Color.YELLOW);
 
         
         add(lNombre);
         add(tNombre);
-        add(lPartida);
-        add(tPartidaTextField);
-        add(bJUEGO1);
-        add(bJUEGO2);
-        add(bJUEGO3);
-        add(bJUEGO4);
+        add(lNickname);
+        add(tNickname);
+        add(lCorreo);
+        add(tCorreo);
+        add(espacio);
+        add(bFORTNITE);
+        add(bAJEDREZ);
+        add(bTETRIS);
+        add(bAPEX);
+
+        bFORTNITE.setActionCommand(FORTNITE);
+        bAJEDREZ.setActionCommand(AJEDREZ);
+        bTETRIS.setActionCommand(TETRIS);
+        bAPEX.setActionCommand(APEX);
+
+        bFORTNITE.addActionListener(this);
+        bAJEDREZ.addActionListener(this);
+        bTETRIS.addActionListener(this);
+        bAPEX.addActionListener(this);
     }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+    }
+
+
+      
     
 }

@@ -66,8 +66,8 @@ public class InterfazTorneo extends JFrame {
     }
 
     public void ecampeon(){
-    String mensaje2 = "El campeón del torneo es" + competencia.mejorJugador();
-    JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
+        String mensaje2 = "El campeón del torneo es" + competencia.mejorJugador();
+        JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
     }
 
 

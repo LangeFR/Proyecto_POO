@@ -12,7 +12,7 @@ public class PanelJuegos extends JPanel{
     public PanelJuegos() {
         //Aquí caracterizamos al panel de forma básica: color, borde y disposición "Flow"
         setLayout(new GridLayout(2,4));
-        TitledBorder border = BorderFactory.createTitledBorder("Selecciona un juego para conocer sus estadísticas");
+        TitledBorder border = BorderFactory.createTitledBorder("Selecciona un juego");
         border.setTitleColor(Color.BLACK);
         setBorder(border);
         setBackground(Color.WHITE);
