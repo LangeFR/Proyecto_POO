@@ -17,6 +17,12 @@ public class Competencia implements Serializable{
     }
 
     /*
+     * Getters
+     */
+    public ArrayList<Jugador> getJugadores(){return jugadores;}
+    public ArrayList<Juego> getJuegos(){return juegos;}
+
+    /*
      * Recibe un jugador y lo agrega a la lista de jugadores
      * No retorna nada
      */

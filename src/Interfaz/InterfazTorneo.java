@@ -1,5 +1,7 @@
 package Interfaz;
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -13,10 +15,27 @@ public class InterfazTorneo extends JFrame {
     private int actual;
     private Competencia competencia;
 
+    private Fortnite fortnite;
+    private Ajedrez ajedrez;
+    private ApexLegends apexLegends;
+    private Tetris tetris;
+
     public InterfazTorneo() {
         setTitle("Torneo de videojuegos");
         setSize(1050, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Inicilizar juegos y competencia
+        competencia = new Competencia();
+        fortnite = new Fortnite("Fortnite", "Epic Games", 100, "Last one Standing");
+        ajedrez = new Ajedrez("Ajedrez", "None", 2, "1 vs 1");
+        apexLegends = new ApexLegends("ApexLegends", "Respawn Entertainment", 50, "Numero de kills");
+        tetris = new Tetris("Tetris", "Alekséi Pázhitnov", 1, "Acumulacion de puntos");
+
+        competencia.agregarJuego(fortnite);
+        competencia.agregarJuego(ajedrez);
+        competencia.agregarJuego(apexLegends);
+        competencia.agregarJuego(tetris);
 
         //Estos son los 4 paneles principales
         panelRegistro = new PanelRegistro();
@@ -72,19 +91,54 @@ public class InterfazTorneo extends JFrame {
 
 
     public void eFortnite(){
+        //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getName();
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
 
+        //Crea un nuevo jugador con dichos atributos
         Jugador jugador = new Jugador(nombre, correo, nickname);
 
-        if(){
-            //Añadir jugador a competencia
+        //Trae la lista de jugadores de competencia
+        ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
+        boolean flagCompetencia = true;
+
+        /*
+         * Verifica que el jugador no se encuentre inscrito en competencia
+         * Si no esta inscrito, lo añade 
+         */
+        for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++){
+            String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
+
+            if(correoActual.equals(correo))
+                flagCompetencia = false;
         }
 
-        //añadir jugador a Fortnite
+        if(flagCompetencia)
+            competencia.agregarJugador(jugador);
 
-        panelRegistro.LimpiarCampos();
+        
+        //Trae la lista de jugadores de Fortnite
+        ArrayList<Jugador> jugadoresFortnite = fortnite.getJugadoresFortnite();
+        boolean flagJuego = true;
+
+        /*
+         * Verifica que el jugador no se encuentre inscrito en Fortnite
+         * Si no esta inscrito, lo añade 
+         */
+        for(int jugadorActual = 0; jugadorActual < jugadoresFortnite.size() && flagJuego; jugadorActual++){
+            String correoActual = jugadoresFortnite.get(jugadorActual).getCorreo();
+
+            if(correoActual.equals(correo))
+                flagJuego = false;
+        }
+
+        if(flagJuego)
+            fortnite.agregarJugadorFortnite(jugador);
+
+
+        //Limpia los campos para recibir un nuevo inscrito
+        panelRegistro.limpiarCampos();
     }
 }
 
