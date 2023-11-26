@@ -180,7 +180,7 @@ public class InterfazTorneo extends JFrame {
 
 
             /*
-            * Verifica que el jugador no se encuentre inscrito en Fortnite
+            * Verifica que el jugador no se encuentre inscrito en Tetris
             * Si no esta inscrito, lo añade 
             */
             if(!tetris.isInTetris(jugador)){
