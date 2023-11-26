@@ -11,7 +11,10 @@ public class Competencia implements Serializable{
      * Constructor competencia
      * No parametros
      */
-    public Competencia(){}
+    public Competencia(){
+        jugadores = new ArrayList<Jugador>();
+        juegos = new ArrayList<Juego>();
+    }
 
     /*
      * Recibe un jugador y lo agrega a la lista de jugadores
