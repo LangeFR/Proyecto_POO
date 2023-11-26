@@ -18,7 +18,7 @@ public class InterfazTorneo extends JFrame {
     private PanelModificar panelModificar;
     private int actual;
     private Competencia competencia;
-    private JComboBox<String> listaJugadores; // JComboBox para la lista de jugadores
+    private JComboBox<String> listaJugadoresJCombo; // JComboBox para la lista de jugadores
 
     private Fortnite fortnite;
     private Ajedrez ajedrez;
@@ -31,7 +31,6 @@ public class InterfazTorneo extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Inicilizar juegos y competencia
-        listaJugadores = new JComboBox<>();
         competencia = new Competencia();
         fortnite = new Fortnite("Fortnite", "Epic Games", 100, "Last one Standing");
         ajedrez = new Ajedrez("Ajedrez", "None", 2, "1 vs 1");
@@ -302,8 +301,18 @@ public class InterfazTorneo extends JFrame {
     }
 
     public void eModificar() {
+        ArrayList<String> listaJugadores = new ArrayList<String>();
+        listaJugadores.add("Seleccione el jugador...");
+        for(Jugador jugadorActual : competencia.getJugadores()){
+            listaJugadores.add(jugadorActual.getCorreo());
+            System.out.println(jugadorActual.getCorreo());
+        }
+
+        listaJugadoresJCombo = new JComboBox<>(listaJugadores.toArray(new String[listaJugadores.size()]));
+
         // Obtener el jugador seleccionado del JComboBox
-        String nombreJugadorSeleccionado = (String) listaJugadores.getSelectedItem();
+        JOptionPane.showMessageDialog(this, listaJugadoresJCombo, "Selecciona un Jugador", JOptionPane.QUESTION_MESSAGE);
+        String nombreJugadorSeleccionado = (String) listaJugadoresJCombo.getSelectedItem();
             // Buscar el jugador directamente en la lista de jugadores
             Jugador jugadorSeleccionado = null;
             for (Jugador jugador : competencia.getJugadores()) {
