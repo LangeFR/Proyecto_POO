@@ -10,6 +10,7 @@ public class PanelModificar extends JPanel implements ActionListener {
     private InterfazTorneo principal;
 
     public PanelModificar(InterfazTorneo inter) { 
+        principal = inter;
         setLayout(new FlowLayout());
         Color moradoOscuro = new Color(102, 0, 102);
         setBackground(moradoOscuro);
