@@ -1,14 +1,20 @@
 package Interfaz;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;  
+import java.awt.event.ActionListener;
 
-public class PanelJugadores extends JPanel {
+public class PanelJugadores extends JPanel implements ActionListener{
     private JLabel lJugador;
     private JTextField tJugador;
     private JButton bConsultar;
     private JButton bCampeon;
+    private final static String CONSULTAR = "CONSULTAR";
+    private final static String CAMPEON = "CAMPEON";
+    //Asociacion del Panel a Ventana Principal
+    private InterfazTorneo principal;
+
 
 public PanelJugadores() {
     setLayout(new FlowLayout());
@@ -38,13 +44,46 @@ public PanelJugadores() {
     //Image.SCALE_SMOOTH indica un algoritmo de suavizado para mejorar calidad de imagen
     Image image = icono.getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH);
     icono = new ImageIcon(image);
-
     imagenLabel.setIcon(icono);
-
+    
+    //Añadir botones
     add(lJugador);
     add(tJugador);
     add(bConsultar);
     add(bCampeon);
     add(imagenLabel);
+
+    bConsultar.setActionCommand(CONSULTAR);
+    bCampeon.setActionCommand(CAMPEON);
+    bConsultar.addActionListener(this);
+    bCampeon.addActionListener(this);
+
 }
+
+    public void actionPerformed (ActionEvent evento){
+        String command = evento.getActionCommand();
+        switch (command) {
+            case CONSULTAR:
+                principal.consultar();
+                break;
+            case CAMPEON:
+                principal.ecampeon();
+                break;
+        }
+    }
+    
+    
+    //Permitir acceso a la informarción (nombre del jugador)
+    public String getNombre(){
+        return tJugador.getText();
+    }
+    
+    //Refrescar la Información
+    public void setNombre(String nombre){
+        tJugador.setText(nombre);
+    }
+
+    public void limpiar_campos(){
+        tJugador.setText("");
+    }
 }
