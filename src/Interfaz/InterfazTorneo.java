@@ -39,7 +39,7 @@ public class InterfazTorneo extends JFrame {
 
         //Estos son los 4 paneles principales
         panelRegistro = new PanelRegistro(this);
-        panelJuegos = new PanelJuegos();
+        panelJuegos = new PanelJuegos(this);
         panelJugadores = new PanelJugadores();
         panelModificar = new PanelModificar();
         setLayout(new BorderLayout());
@@ -293,6 +293,23 @@ public class InterfazTorneo extends JFrame {
             //Limpia los campos para recibir un nuevo inscrito
             panelRegistro.limpiarCampos();
         }
+    }
+
+
+    public void eJugarFortnite(){
+        String fecha = JOptionPane.showInputDialog("Digite la fecha: ")
+        int tiempo 
+        int puntaje 
+
+    }
+    public void eJugarAjedrez(){
+
+    }
+    public void eJugarTetris(){
+
+    }
+    public void eJugarApex(){
+    
     }
 
 

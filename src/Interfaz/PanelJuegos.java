@@ -2,14 +2,25 @@ package Interfaz;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PanelJuegos extends JPanel{
+public class PanelJuegos extends JPanel implements ActionListener{
     private JButton bFortnite;
     private JButton bAjedrez;
     private JButton bTetris;
     private JButton bApex;
 
-    public PanelJuegos() {
+    private static final String JUGAR_FORTNITE = "JUGAR_FORTNITE";
+    private static final String JUGAR_AJEDREZ = "JUGAR_AJEDREZ";
+    private static final String JUGAR_APEX = "JUGAR_APEX";
+    private static final String JUGAR_TETRIS = "JUGAR_TETRIS";
+
+    private InterfazTorneo principal;
+
+    public PanelJuegos(InterfazTorneo inter) {
+        principal = inter;
+
         //Aquí caracterizamos al panel de forma básica: color, borde y disposición "Flow"
         setLayout(new GridLayout(2,4));
         TitledBorder border = BorderFactory.createTitledBorder("Selecciona un juego");
@@ -19,7 +30,7 @@ public class PanelJuegos extends JPanel{
         
 
         //Inicializamos los botones y el label
-        bFortnite = new JButton("");
+        bFortnite = new JButton(" ");
         bFortnite.setBackground(Color.WHITE);
         bAjedrez = new JButton("");
         bAjedrez.setBackground(Color.WHITE);
@@ -51,7 +62,34 @@ public class PanelJuegos extends JPanel{
         add(bTetris);
         add(bApex);
 
-        
+        bFortnite.setActionCommand(JUGAR_FORTNITE);
+        bAjedrez.setActionCommand(JUGAR_AJEDREZ);
+        bTetris.setActionCommand(JUGAR_TETRIS);
+        bApex.setActionCommand(JUGAR_APEX);
+     
+        bFortnite.addActionListener(this);
+        bAjedrez.addActionListener(this);
+        bTetris.addActionListener(this);
+        bApex.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent evento){
+        String command = evento.getActionCommand();
+
+        switch (command) {
+            case JUGAR_FORTNITE:
+                principal.eJugarFortnite();
+                break;
+            case JUGAR_AJEDREZ:
+                principal.eJugarAjedrez();
+                break;
+            case JUGAR_TETRIS:
+                principal.eJugarTetris();
+                break;
+            case JUGAR_APEX:
+                principal.eJugarApex();
+                break;
+        }
     }
 
     
