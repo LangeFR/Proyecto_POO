@@ -113,16 +113,12 @@ public class PanelJugadores extends JPanel implements ActionListener {
                 principal.ecampeon();
                 break;
             case cFORTNITE:
-                // Lógica para el botón de Fortnite
                 break;
             case cAJEDREZ:
-                // Lógica para el botón de Ajedrez
                 break;
             case cTETRIS:
-                // Lógica para el botón de Tetris
                 break;
             case cAPEX_LEGENDS:
-                // Lógica para el botón de Apex Legends
                 break;
         }
     }
