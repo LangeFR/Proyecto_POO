@@ -28,6 +28,21 @@ public class Ajedrez extends Juego{
     }
 
     /*
+     * Recibe un jugador y verifica si esta en la lista
+     * Retorna el valor verdad
+     */
+    public boolean isInAjedrez(Jugador jugador){
+        String correo = jugador.getCorreo();
+
+        for(Jugador jugadorActual : jugadoresAjedrez){
+            if(jugadorActual.getCorreo().equals(correo))
+                return true;
+        }
+
+        return false;
+    }
+
+    /*
      * Sistema de puntajes
      * Si es victoria, asigna 10 puntos, si empate 5 puntos, si derrota 0 puntos
      */

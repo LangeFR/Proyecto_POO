@@ -27,6 +27,20 @@ public class Fortnite extends Juego{
     }
 
     /*
+     * Recibe un jugador y verifica si esta en la lista
+     * Retorna el valor verdad
+     */
+    public boolean isInFortnite(Jugador jugador){
+        String correo = jugador.getCorreo();
+
+        for(Jugador jugadorActual : jugadoresFortnite){
+            if(jugadorActual.getCorreo().equals(correo))
+                return true;
+        }
+
+        return false;
+    }
+    /*
      * Sistema de puntajes
      * Puestos del 1-100, asigna un punto por puesto avanzado
      */
