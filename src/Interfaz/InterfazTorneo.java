@@ -705,7 +705,10 @@ public class InterfazTorneo extends JFrame {
         // Verificar si hay jugadores de ajedrez
         if(jugadoresAjedrez != null && !jugadoresAjedrez.isEmpty()){
             // Obtener la cantidad de partidas y jugadores de ajedrez
-            int cantidadPartidas = jugadoresAjedrez.get(0).cantidadPartidas(ajedrez);
+            int cantidadPartidas = 0;
+            for (int i = 0; i < jugadoresAjedrez.size(); i++) {
+                cantidadPartidas += jugadoresAjedrez.get(i).cantidadPartidas(ajedrez);
+            }
             int cantidadJugadores = jugadoresAjedrez.size();
             // Obtener al mejor jugador de ajedrez
             Jugador mejorJugadorAjedrez = competencia.mejorJugador(ajedrez);
@@ -727,7 +730,10 @@ public class InterfazTorneo extends JFrame {
         //Verificar si hay jugadores de Fortnite
         if(jugadoresFornite != null && !jugadoresFornite.isEmpty()) {
             //Obtener cantidad de partidas y jugadores de fortnite
-            int cantidadPartidas = jugadoresFornite.get(0).cantidadPartidas(fortnite);
+            int cantidadPartidas = 0;
+            for (int i = 0; i < jugadoresFornite.size(); i++) {
+                cantidadPartidas += jugadoresFornite.get(i).cantidadPartidas(ajedrez);
+            }
             int cantidadJugadores = jugadoresFornite.size();
             //Obtener mejor jugador de Fortnite
             Jugador mejorJugadorFornite = competencia.mejorJugador(fortnite);
@@ -747,7 +753,10 @@ public class InterfazTorneo extends JFrame {
         //Verificar si hay jugadores de Tetris
         if(jugadoresTetris != null && !jugadoresTetris.isEmpty()) {
             //Obtener cantidad de partidas y jugadores de tetris
-            int cantidadPartidas = jugadoresTetris.get(0).cantidadPartidas(tetris);
+            int cantidadPartidas = 0;
+            for (int i = 0; i < jugadoresTetris.size(); i++) {
+                cantidadPartidas += jugadoresTetris.get(i).cantidadPartidas(ajedrez);
+            }
             int cantidadJugadores = jugadoresTetris.size();
             //Obtener mejor jugador de tetris
             Jugador mejorJugadorTetris = competencia.mejorJugador(tetris);
@@ -767,7 +776,10 @@ public class InterfazTorneo extends JFrame {
         //Verificar si hay jugadores de Apex
         if(jugadoresApex != null && !jugadoresApex.isEmpty()) {
             //Obtener cantidad de partidas y jugadores de apex legends
-            int cantidadPartidas = jugadoresApex.get(0).cantidadPartidas(apexLegends);
+            int cantidadPartidas = 0;
+            for (int i = 0; i < jugadoresApex.size(); i++) {
+                cantidadPartidas += jugadoresApex.get(i).cantidadPartidas(ajedrez);
+            }
             int cantidadJugadores = jugadoresApex.size();
             //Obtener mejor jugador de apex legends
             Jugador mejorJugadorApex = competencia.mejorJugador(apexLegends);
