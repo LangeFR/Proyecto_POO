@@ -102,16 +102,28 @@ public class InterfazTorneo extends JFrame {
         }
     }
 
+    /*
+     * Logica para el boton de campeon
+     * Encuentra el jugador con mas puntos
+     */
     public void ecampeon() {
+        //Trae la lista de los jugadores de competencia
         ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
 
+        //Verifica que haya colocado un correo
         if (listaJugadoresCompetencia == null || listaJugadoresCompetencia.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay jugadores registrados", "No hay jugadores", JOptionPane.ERROR_MESSAGE);
         } else {
+            //Trae al jugador con mas puntos
             Jugador mejorJugador = competencia.mejorJugador();
 
+            
             if (mejorJugador != null) {
+<<<<<<< HEAD
                 String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre();
+=======
+                String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre(); 
+>>>>>>> bb48c274dd4231c20fda804a867a873a0afe9fdf
                 JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "No se pudo determinar el campeón del torneo", "Error", JOptionPane.ERROR_MESSAGE);
@@ -119,6 +131,9 @@ public class InterfazTorneo extends JFrame {
         }
     }
 
+    /*
+     * Registra un jugador en competencia y en Fortnite
+     */
     public void eFortnite() {
         // Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
@@ -166,6 +181,9 @@ public class InterfazTorneo extends JFrame {
         }
     }
     
+    /*
+     * Registra un jugador en competencia y en Ajedrez
+     */
     public void eAjedrez(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
@@ -218,6 +236,9 @@ public class InterfazTorneo extends JFrame {
         }
     }
 
+    /*
+     * Registra un jugador en competencia y en Tetris
+     */
     public void eTetris(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
@@ -269,6 +290,9 @@ public class InterfazTorneo extends JFrame {
         }
     }
 
+    /*
+     * Registra un jugador en competencia y en Apex Legends
+     */
     public void eApex(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
@@ -383,6 +407,9 @@ public class InterfazTorneo extends JFrame {
         JOptionPane.showMessageDialog(this, "Información del jugador modificada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);        
     }
 
+    /*
+     * Metodo especifico para modificar las partidas de un jugador
+     */
     public void eModificarPartidas(Jugador jugadorSeleccionado, int posJugadorSeleccionado){
         ArrayList<Partida> listaPartidasJugador = jugadorSeleccionado.getPartidas();
         ArrayList<String> listaPartidas = new ArrayList<String>();
@@ -531,6 +558,11 @@ public class InterfazTorneo extends JFrame {
         JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /*
+     * Metodo jugar Ajedrez
+     * Selecciona un jugador y le pide los datos de la partida
+     * Añade la partida al jugador
+     */
     public void eJugarAjedrez(){
         ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
         ArrayList<String> listaJugadores = new ArrayList<String>();
@@ -575,6 +607,11 @@ public class InterfazTorneo extends JFrame {
         JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /*
+     * Metodo jugar Tetris
+     * Selecciona un jugador y le pide los datos de la partida
+     * Añade la partida al jugador
+     */
     public void eJugarTetris(){
         ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
         ArrayList<String> listaJugadores = new ArrayList<String>();
@@ -619,6 +656,11 @@ public class InterfazTorneo extends JFrame {
     
     }
 
+    /*
+     * Metodo jugar Apex Legends
+     * Selecciona un jugador y le pide los datos de la partida
+     * Añade la partida al jugador
+     */
     public void eJugarApex(){
         ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
         ArrayList<String> listaJugadores = new ArrayList<String>();
