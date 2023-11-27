@@ -350,7 +350,7 @@ public class InterfazTorneo extends JFrame {
         }
 
         //Menu para modificar
-        String menuEModificar = "Seleccione un item a modificar:\n1. Nombre\n2. Nickname\n3. Correo\n4.Partidas";
+        String menuEModificar = "Seleccione un item a modificar:\n1. Nombre\n2. Nickname\n3. Correo\n4. Partidas";
 
         //Define que opcion modificar y lo ejecuta
         int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menuEModificar));
@@ -368,7 +368,7 @@ public class InterfazTorneo extends JFrame {
                 jugadorSeleccionado.setCorreo(nuevoCorreo);
                 break;
             case 4:
-                //
+                eModificarPartidas(jugadorSeleccionado, posJugadorSeleccionado);
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Opcion invalida");
@@ -389,7 +389,7 @@ public class InterfazTorneo extends JFrame {
 
 
     public void eModificarPartidas(Jugador jugadorSeleccionado, int posJugadorSeleccionado){
-        ArrayList<Partida> listaJugadoresCompetencia = jugadorSeleccionado.getPartidas();
+        ArrayList<Partida> listaPartidasJugador = jugadorSeleccionado.getPartidas();
         ArrayList<String> listaPartidas = new ArrayList<String>();
         listaPartidas.add("Seleccione la partida...");
 
@@ -397,7 +397,6 @@ public class InterfazTorneo extends JFrame {
         for(Partida partidaActual : jugadorSeleccionado.getPartidas()){
             listaPartidas.add("Partida " + count + ": " + partidaActual.getFecha());
             count++;
-            break;
         }
 
         listaPartidasJCombo = new JComboBox<>(listaPartidas.toArray(new String[listaPartidas.size()]));
@@ -408,16 +407,83 @@ public class InterfazTorneo extends JFrame {
         Partida partidaSeleccionada = null;
         int posPartidaSeleccionada = 0;
 
+        count = 1;
         for(int partidaActual = 0; partidaActual < jugadorSeleccionado.getPartidas().size(); partidaActual++) {
-            if(jugadorSeleccionado.getPartida(partidaActual).getFecha().equals("Partida " + count + ": " + fechaPartidaSeleccionada)){
+            String fechaActual = jugadorSeleccionado.getPartida(partidaActual).getFecha();
+            //if(("Partida 2: 2023_11_29").equals(fechaPartidaSeleccionada)){
+            if(("Partida " + count + ": " +  fechaActual).equals(fechaPartidaSeleccionada)){
                 partidaSeleccionada = jugadorSeleccionado.getPartida(partidaActual);
                 posPartidaSeleccionada = partidaActual;
             }
+            count++;
         }
 
         //Menu para modificar
-        String menuEModificarPartida = "Seleccione un item a modificar:\n1. Fecha\n2. Tiempo\n3. Puntaje\n4, Juego";
+        String menuEModificarPartida = "Seleccione un item a modificar:\n1. Fecha\n2. Tiempo\n3. Puntaje\n4. Juego";
 
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menuEModificarPartida));
+        switch(opcion){
+            case 1:
+                String nuevaFecha = JOptionPane.showInputDialog(null, "Digite la nueva Fecha:");
+                partidaSeleccionada.setFecha(nuevaFecha);
+                break;
+            case 2:
+                int nuevoTiempo = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el nuevo tiempo:"));
+                partidaSeleccionada.setTiempo(nuevoTiempo);
+                break;
+            case 3:
+                if(partidaSeleccionada.getJuego() instanceof Fortnite){
+                    int nuevoPuesto = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el nuevo puesto:"));
+                    partidaSeleccionada.setPuntaje(fortnite.definirPuntaje(nuevoPuesto));
+                }
+                else if(partidaSeleccionada.getJuego() instanceof Ajedrez){
+                    String menuAjedrez = "Seleccione el resultado:\n1. Victoria\n2. Empate\n3. Derrota";
+                    int res = Integer.parseInt(JOptionPane.showInputDialog(null, menuAjedrez));
+
+                    partidaSeleccionada.setPuntaje(ajedrez.definirPuntaje(res));
+
+                }
+                else if(partidaSeleccionada.getJuego() instanceof ApexLegends){
+                    int kills = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de kills: "));
+                    int deaths = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de deaths: "));
+                    
+                    partidaSeleccionada.setPuntaje(apexLegends.definirPuntos(kills, deaths));
+                }
+                else if(partidaSeleccionada.getJuego() instanceof Tetris){
+                    int nuevasFilas = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el nuevo numero de fillas despejadas:"));
+                    
+                    partidaSeleccionada.setPuntaje(tetris.definirPuntos(nuevasFilas));
+                }
+            case 4:
+                String menuNuevoJuego = "Digite el nuevo Juego:\n1. Fortnite\n2. Ajedrez\n3. Apex Legends\n4. Tetris";
+
+                int opcionJuego = Integer.parseInt(JOptionPane.showInputDialog(menuNuevoJuego));
+                switch(opcionJuego){
+                    case 1:
+                        partidaSeleccionada.setJuego(fortnite);
+                        break;
+                    case 2:
+                        partidaSeleccionada.setJuego(ajedrez);
+                        break;
+                    case 3:
+                        partidaSeleccionada.setJuego(apexLegends);
+                        break;
+                    case 4: 
+                        partidaSeleccionada.setJuego(tetris);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opcion invalida");
+                        break;
+                }
+            default:
+                    JOptionPane.showMessageDialog(null, "Opcion invalida");
+                    break;
+        }
+
+        listaPartidasJugador.set(posPartidaSeleccionada, partidaSeleccionada);
+        jugadorSeleccionado.setPartidas(listaPartidasJugador);
+
+        JOptionPane.showMessageDialog(null, "Cambio exitoso");
     }
 
     /*

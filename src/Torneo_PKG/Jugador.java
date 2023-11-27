@@ -35,6 +35,8 @@ public class Jugador implements Serializable{
         this.correo = correo;
     } public void setNickName(String nikcName) {
         this.nickName = nikcName;
+    } public void setPartidas(ArrayList<Partida> partidas){
+        this.partidas = partidas;
     } public void setPartida(int i, Partida partida){
         partidas.set(i, partida);
     }
