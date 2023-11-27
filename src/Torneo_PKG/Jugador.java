@@ -223,10 +223,10 @@ public class Jugador implements Serializable{
         int horasTotal = 0;
 
         for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
-            horasTotal += partidas.get(partidaActual).getTiempo() / 3600;
+            horasTotal += partidas.get(partidaActual).getTiempo();
         }
 
-        return horasTotal;
+        return horasTotal  / 3600;
     }
 
     /*
@@ -240,10 +240,10 @@ public class Jugador implements Serializable{
             Partida partida = partidas.get(partidaActual);
             
             if(juego.getClass().isInstance(partida.getJuego()))
-                horasTotal += partidas.get(partidaActual).getTiempo() / 3600;
+                horasTotal += partidas.get(partidaActual).getTiempo();
         }
 
-        return horasTotal;
+        return horasTotal / 3600;
     }
 
 }
