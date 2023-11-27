@@ -430,6 +430,7 @@ public void consultar() {
         // Mostrar mensaje de éxito
         JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
+
     public void eJugarAjedrez(){
         ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
         ArrayList<String> listaJugadores = new ArrayList<String>();
@@ -473,11 +474,92 @@ public void consultar() {
         // Mostrar mensaje de éxito
         JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
-    public void eJugarTetris(){
 
-    }
-    public void eJugarApex(){
+    public void eJugarTetris(){
+        ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
+        ArrayList<String> listaJugadores = new ArrayList<String>();
+        listaJugadores.add("Seleccione el jugador...");
+
+        for(Jugador jugadorActual : competencia.getJugadores()){
+            listaJugadores.add(jugadorActual.getCorreo());
+        }
+
+        listaJugadoresJCombo = new JComboBox<>(listaJugadores.toArray(new String[listaJugadores.size()]));
+
+        // Obtener el jugador seleccionado del JComboBox
+        JOptionPane.showMessageDialog(this, listaJugadoresJCombo, "Selecciona un Jugador", JOptionPane.QUESTION_MESSAGE);
+        String correoJugadorSeleccionado = (String) listaJugadoresJCombo.getSelectedItem();
+
+        // Buscar el jugador directamente en la lista de jugadores
+        Jugador jugadorSeleccionado = null;
+        int posJugadorSeleccionado = 0;
+        for (int jugadorActual = 0; jugadorActual < competencia.getJugadores().size(); jugadorActual++) {
+            if (competencia.getJugador(jugadorActual).getCorreo().equals(correoJugadorSeleccionado)) {
+                jugadorSeleccionado = competencia.getJugador(jugadorActual);
+                posJugadorSeleccionado = jugadorActual;
+                break;
+            }
+        }
+
+        String fecha = JOptionPane.showInputDialog("Digite la fecha: ");
+        int tiempo = Integer.parseInt(JOptionPane.showInputDialog("Digite el tiempo: "));
+        int filledRows = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de filas despejadas: "));
+        int puntaje = tetris.definirPuntos(filledRows);
+
+        Partida partida = new Partida(fecha, tiempo, puntaje, tetris);
+        
+        jugadorSeleccionado.agregarPartida(partida);
+
+        //Actualizar la lista
+        listaJugadoresCompetencia.set(posJugadorSeleccionado, jugadorSeleccionado);
+        competencia.setJugadores(listaJugadoresCompetencia);
+
+        // Mostrar mensaje de éxito
+        JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     
+    }
+
+    public void eJugarApex(){
+        ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
+        ArrayList<String> listaJugadores = new ArrayList<String>();
+        listaJugadores.add("Seleccione el jugador...");
+
+        for(Jugador jugadorActual : competencia.getJugadores()){
+            listaJugadores.add(jugadorActual.getCorreo());
+        }
+
+        listaJugadoresJCombo = new JComboBox<>(listaJugadores.toArray(new String[listaJugadores.size()]));
+
+        // Obtener el jugador seleccionado del JComboBox
+        JOptionPane.showMessageDialog(this, listaJugadoresJCombo, "Selecciona un Jugador", JOptionPane.QUESTION_MESSAGE);
+        String correoJugadorSeleccionado = (String) listaJugadoresJCombo.getSelectedItem();
+
+        // Buscar el jugador directamente en la lista de jugadores
+        Jugador jugadorSeleccionado = null;
+        int posJugadorSeleccionado = 0;
+        for (int jugadorActual = 0; jugadorActual < competencia.getJugadores().size(); jugadorActual++) {
+            if (competencia.getJugador(jugadorActual).getCorreo().equals(correoJugadorSeleccionado)) {
+                jugadorSeleccionado = competencia.getJugador(jugadorActual);
+                posJugadorSeleccionado = jugadorActual;
+                break;
+            }
+        }
+
+        String fecha = JOptionPane.showInputDialog("Digite la fecha: ");
+        int tiempo = Integer.parseInt(JOptionPane.showInputDialog("Digite el tiempo: "));
+        int kills = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de kills: "));
+        int deaths = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de deaths: "));
+        int puntaje = apexLegends.definirPuntos(kills, deaths);
+
+        Partida partida = new Partida(fecha, tiempo, puntaje, apexLegends);
+
+        jugadorSeleccionado.agregarPartida(partida);
+
+        listaJugadoresCompetencia.set(posJugadorSeleccionado, jugadorSeleccionado);
+        competencia.setJugadores(listaJugadoresCompetencia);
+
+        // Mostrar mensaje de éxito
+        JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
