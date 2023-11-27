@@ -211,7 +211,7 @@ public void consultar() {
         }
     }
 
-        public void eTetris(){
+    public void eTetris(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
         String correo = panelRegistro.getCorreo();
