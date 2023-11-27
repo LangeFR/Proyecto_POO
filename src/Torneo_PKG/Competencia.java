@@ -65,7 +65,7 @@ public class Competencia implements Serializable{
         int puntajeMax = jugadores.get(0).puntajeAcumulado();
         int posMejor = 0;
 
-        for (int jugadorActual = 0; jugadorActual <= jugadores.size(); jugadorActual++){
+        for (int jugadorActual = 0; jugadorActual < jugadores.size(); jugadorActual++){
             if(jugadores.get(jugadorActual).puntajeAcumulado() > puntajeMax){
                 puntajeMax = jugadores.get(jugadorActual).puntajeAcumulado();
                 posMejor = jugadorActual;

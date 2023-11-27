@@ -1,13 +1,10 @@
 package Interfaz;
 import java.awt.*;
 import java.util.ArrayList;
-
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import Torneo_PKG.*;
 
 public class InterfazTorneo extends JFrame {
@@ -22,7 +19,6 @@ public class InterfazTorneo extends JFrame {
     private Ajedrez ajedrez;
     private ApexLegends apexLegends;
     private Tetris tetris;
-    private JTextField tJugador;
 
     public InterfazTorneo() {
         setTitle("Torneo de videojuegos");
@@ -35,8 +31,6 @@ public class InterfazTorneo extends JFrame {
         ajedrez = new Ajedrez("Ajedrez", "None", 2, "1 vs 1");
         apexLegends = new ApexLegends("ApexLegends", "Respawn Entertainment", 50, "Numero de kills");
         tetris = new Tetris("Tetris", "Alekséi Pázhitnov", 1, "Acumulacion de puntos");
-        tJugador = new JTextField();
-
         competencia.agregarJuego(fortnite);
         competencia.agregarJuego(ajedrez);
         competencia.agregarJuego(apexLegends);
@@ -75,21 +69,22 @@ public class InterfazTorneo extends JFrame {
     }
     
 // Lógica para el botón consultar
-public void consultar() {
+    public void consultar() {
+
     // Obtiene el texto del campo de texto
-    String correoBusqueda = tJugador.getText();  // Reemplaza "tuCampoDeTexto" con el nombre real de tu campo de texto
+        String correo = PanelJugadores.getNombre();
 
     // Verifica si el campo de texto está vacío
-    if (correoBusqueda.isEmpty()) {
+        if (correo.isEmpty()) {
         // Muestra un mensaje de error si está vacío
-        JOptionPane.showMessageDialog(this, "Error: Debes ingresar un correo para buscar", "Error", JOptionPane.ERROR_MESSAGE);
-    } else {
+            JOptionPane.showMessageDialog(this, "Error: Debes ingresar un correo para buscar", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
         // Busca el jugador en la lista de competencia
-        Jugador jugadorBusqueda = null;
-        for (Jugador jugador : competencia.getJugadores()) {
-            if (jugador.getCorreo().equals(correoBusqueda)) {
-                jugadorBusqueda = jugador;
-                break;
+            Jugador jugadorBusqueda = null;
+            for (Jugador jugador : competencia.getJugadores()) {
+                if (jugador.getCorreo().equals(correo)) {
+                    jugadorBusqueda = jugador;
+                    break;
             }
         }
         // Verifica si se encontró el jugador
@@ -108,11 +103,23 @@ public void consultar() {
     }
 }
 
-    public void ecampeon(){
-        String mensaje2 = "El campeón del torneo es" + competencia.mejorJugador();
-        JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
+    public void ecampeon() {
+        ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
+
+        if (listaJugadoresCompetencia == null || listaJugadoresCompetencia.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay jugadores registrados", "No hay jugadores", JOptionPane.ERROR_MESSAGE);
+        } else {
+        Jugador mejorJugador = competencia.mejorJugador();
+
+        if (mejorJugador != null) {
+            String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre(); // Assuming there's a getNombre() method in Jugador
+            JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo determinar el campeón del torneo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
-    
+}
+
     public void eFortnite() {
         // Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
