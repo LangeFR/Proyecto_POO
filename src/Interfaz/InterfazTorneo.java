@@ -62,7 +62,7 @@ public class InterfazTorneo extends JFrame {
         add(bottomPanel, BorderLayout.SOUTH);
         bottomPanel.setBackground(moradoOscuro);
     }
-
+        //Hacer visible la interfaz
     public static void main(String[] args) {
         InterfazTorneo ic = new InterfazTorneo();
         ic.setVisible(true);
@@ -70,10 +70,8 @@ public class InterfazTorneo extends JFrame {
     
     // Lógica para el botón consultar
     public void consultar() {
-
         // Obtiene el texto del campo de texto
         String correo = PanelJugadores.getNombre();
-
         // Verifica si el campo de texto está vacío
         if (correo.isEmpty()) {
             // Muestra un mensaje de error si está vacío
@@ -121,7 +119,11 @@ public class InterfazTorneo extends JFrame {
 
             
             if (mejorJugador != null) {
+<<<<<<< HEAD
+                String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre();
+=======
                 String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre(); 
+>>>>>>> bb48c274dd4231c20fda804a867a873a0afe9fdf
                 JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "No se pudo determinar el campeón del torneo", "Error", JOptionPane.ERROR_MESSAGE);
@@ -701,6 +703,91 @@ public class InterfazTorneo extends JFrame {
         // Mostrar mensaje de éxito
         JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    public void cAJEDREZ(){
+        ArrayList<Jugador> jugadoresAjedrez = ajedrez.getJugadoresAjedrez();
+        // Verificar si hay jugadores de ajedrez
+        if(jugadoresAjedrez != null && !jugadoresAjedrez.isEmpty()){
+            // Obtener la cantidad de partidas y jugadores de ajedrez
+            int cantidadPartidas = jugadoresAjedrez.get(0).cantidadPartidas(ajedrez);
+            int cantidadJugadores = jugadoresAjedrez.size();
+            // Obtener al mejor jugador de ajedrez
+            Jugador mejorJugadorAjedrez = competencia.mejorJugador(ajedrez);
+             // Mostrar estadísticas
+            String mensaje = "Estadísticas del Juego:\n\n" +
+                "Cantidad de Partidas: " + cantidadPartidas + "\n" +
+                "Cantidad de Jugadores: " + cantidadJugadores + "\n" +
+                "Mejor Jugador: " + (mejorJugadorAjedrez != null ? mejorJugadorAjedrez.getNombre() : "No disponible");
+
+                JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Juego de Ajedrez", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+             // Mostrar mensaje si no hay jugadores de ajedrez
+            JOptionPane.showMessageDialog(this, "No hay jugadores de ajedrez registrados", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+    public void cFORTNITE(){
+        ArrayList<Jugador> jugadoresFornite = fortnite.getJugadoresFortnite();
+        //Verificar si hay jugadores de Fortnite
+        if(jugadoresFornite != null && !jugadoresFornite.isEmpty()) {
+            //Obtener cantidad de partidas y jugadores de fortnite
+            int cantidadPartidas = jugadoresFornite.get(0).cantidadPartidas(fortnite);
+            int cantidadJugadores = jugadoresFornite.size();
+            //Obtener mejor jugador de Fortnite
+            Jugador mejorJugadorFornite = competencia.mejorJugador(fortnite);
+            //Mensaje estadísticas
+            String mensaje = "Estadísticas del Juego:\n\n" +
+                "Cantidad de Partidas: " + cantidadPartidas + "\n" +
+                "Cantidad de Jugadores: " + cantidadJugadores + "\n" +
+                "Mejor Jugador: " + (mejorJugadorFornite != null ? mejorJugadorFornite.getNombre() : "No disponible");
+                JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Juego de Fortnite", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+             // Mostrar mensaje si no hay jugadores de ajedrez
+            JOptionPane.showMessageDialog(this, "No hay jugadores de Fortnite registrados", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+    public void cTETRIS(){
+        ArrayList<Jugador> jugadoresTetris = tetris.getJugadoresTetris();
+        //Verificar si hay jugadores de Tetris
+        if(jugadoresTetris != null && !jugadoresTetris.isEmpty()) {
+            //Obtener cantidad de partidas y jugadores de tetris
+            int cantidadPartidas = jugadoresTetris.get(0).cantidadPartidas(tetris);
+            int cantidadJugadores = jugadoresTetris.size();
+            //Obtener mejor jugador de tetris
+            Jugador mejorJugadorTetris = competencia.mejorJugador(tetris);
+            //Mensaje estadísticas
+            String mensaje = "Estadísticas del Juego:\n\n" +
+                "Cantidad de Partidas: " + cantidadPartidas + "\n" +
+                "Cantidad de Jugadores: " + cantidadJugadores + "\n" +
+                "Mejor Jugador: " + (mejorJugadorTetris != null ? mejorJugadorTetris.getNombre() : "No disponible");
+                JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Juego de Tetris", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+             // Mostrar mensaje si no hay jugadores de ajedrez
+            JOptionPane.showMessageDialog(this, "No hay jugadores de Tetris registrados", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+    public void cAPEX(){
+        ArrayList<Jugador> jugadoresApex = apexLegends.getJugadoresApexLegends();
+        //Verificar si hay jugadores de Apex
+        if(jugadoresApex != null && !jugadoresApex.isEmpty()) {
+            //Obtener cantidad de partidas y jugadores de apex legends
+            int cantidadPartidas = jugadoresApex.get(0).cantidadPartidas(apexLegends);
+            int cantidadJugadores = jugadoresApex.size();
+            //Obtener mejor jugador de apex legends
+            Jugador mejorJugadorApex = competencia.mejorJugador(apexLegends);
+            //Mensaje estadísticas
+            String mensaje = "Estadísticas del Juego:\n\n" +
+                "Cantidad de Partidas: " + cantidadPartidas + "\n" +
+                "Cantidad de Jugadores: " + cantidadJugadores + "\n" +
+                "Mejor Jugador: " + (mejorJugadorApex != null ? mejorJugadorApex.getNombre() : "No disponible");
+                JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Juego de Apex Legends", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+             // Mostrar mensaje si no hay jugadores de Apex legends
+            JOptionPane.showMessageDialog(this, "No hay jugadores de Apex Legends registrados", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+
 
 
 }
