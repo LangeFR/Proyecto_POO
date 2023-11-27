@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Partida_Test",
+            "request": "launch",
+            "mainClass": "Testing.Partida_Test",
+            "projectName": "Proyecto_POO_6bd12070"
+        },
+        {
+            "type": "java",
+            "name": "Jugador_Test",
+            "request": "launch",
+            "mainClass": "Testing.Jugador_Test",
+            "projectName": "Proyecto_POO_6bd12070"
+        },
+        {
+            "type": "java",
             "name": "Jugador_Test",
             "request": "launch",
             "mainClass": "Testing.Jugador_Test",
