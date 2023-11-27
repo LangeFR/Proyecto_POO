@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class PanelJugadores extends JPanel implements ActionListener {
     private JLabel lJugador;
-    private JTextField tJugador;
+    private static JTextField tJugador;
     private JButton bConsultar;
     private JButton bCampeon;
     private JButton b_cFortnite;
@@ -29,6 +29,8 @@ public class PanelJugadores extends JPanel implements ActionListener {
 
     public PanelJugadores(InterfazTorneo inter) {
         principal = inter;
+        tJugador = new JTextField();
+
         
         setLayout(new GridLayout(0, 1, 10, 10)); // GridLayout con espaciado vertical y horizontal
         TitledBorder border = BorderFactory.createTitledBorder("Consultar estadísticas");
@@ -38,7 +40,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
 
         // Elementos para estadísticas de jugadores
         lStatsJugador = new JLabel("Estadísticas de jugadores:");
-        lJugador = new JLabel("Nombre del jugador:");
+        lJugador = new JLabel("Correo del jugador:");
         tJugador = new JTextField(30);
         bConsultar = new JButton("Consultar stats del jugador");
         bCampeon = new JButton("Campeón del torneo");
@@ -92,7 +94,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
     }
 
     // Permitir acceso a la información (nombre del jugador)
-    public String getNombre() {
+    public static String getNombre() {
         return tJugador.getText();
     }
 
@@ -124,6 +126,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
                 break;
         }
     }
+
 
 
 }
