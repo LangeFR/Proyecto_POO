@@ -49,7 +49,7 @@ public class Ajedrez extends Juego{
     public int definirPuntaje(int res){
         if(res == 1)
             return 10;
-        else if(res == 0)
+        else if(res == 2)
             return 5;
         return 0;
     }
