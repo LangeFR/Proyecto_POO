@@ -23,6 +23,11 @@ public class Competencia implements Serializable{
     public ArrayList<Juego> getJuegos(){return juegos;}
 
     /*
+     * Setters
+     */
+    public void setJugadores(ArrayList<Jugador> jugadores){this.jugadores = jugadores;}
+
+    /*
      * Recibe un jugador y lo agrega a la lista de jugadores
      * No retorna nada
      */

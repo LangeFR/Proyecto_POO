@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import Torneo_PKG.*;
 
@@ -300,70 +298,70 @@ public class InterfazTorneo extends JFrame {
         }
     }
 
+    /*
+     * Modifica la informacion que el usuario requiera de un Jugador
+     */
     public void eModificar() {
+        ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
         ArrayList<String> listaJugadores = new ArrayList<String>();
         listaJugadores.add("Seleccione el jugador...");
+
         for(Jugador jugadorActual : competencia.getJugadores()){
             listaJugadores.add(jugadorActual.getCorreo());
-            System.out.println(jugadorActual.getCorreo());
         }
 
         listaJugadoresJCombo = new JComboBox<>(listaJugadores.toArray(new String[listaJugadores.size()]));
 
         // Obtener el jugador seleccionado del JComboBox
         JOptionPane.showMessageDialog(this, listaJugadoresJCombo, "Selecciona un Jugador", JOptionPane.QUESTION_MESSAGE);
-        String nombreJugadorSeleccionado = (String) listaJugadoresJCombo.getSelectedItem();
-            // Buscar el jugador directamente en la lista de jugadores
-            Jugador jugadorSeleccionado = null;
-            for (Jugador jugador : competencia.getJugadores()) {
-                if (jugador.getNombre().equals(nombreJugadorSeleccionado)) {
-                    jugadorSeleccionado = jugador;
-                    break;
-                }
-            }
-    
-            if (jugadorSeleccionado != null) {
-                // Crear JTextFields para el nombre, correo y nickname
-                JTextField nombreField = new JTextField(10);
-                JTextField correoField = new JTextField(10);
-                JTextField nicknameField = new JTextField(10);
-    
-                // Asignar los valores actuales del jugador a los JTextFields
-                nombreField.setText(jugadorSeleccionado.getNombre());
-                correoField.setText(jugadorSeleccionado.getCorreo());
-                nicknameField.setText(jugadorSeleccionado.getNickName());
-    
-                // Crear el panel que contendrá los JTextFields
-                JPanel panel = new JPanel();
-                panel.setLayout(new GridLayout(4, 2));
-                panel.add(new JLabel("Nuevo Nombre:"));
-                panel.add(nombreField);
-                panel.add(new JLabel("Nuevo Correo:"));
-                panel.add(correoField);
-                panel.add(new JLabel("Nuevo Nickname:"));
-                panel.add(nicknameField);
-    
-                // Mostrar el cuadro de diálogo y obtener la respuesta del usuario
-                int result = JOptionPane.showConfirmDialog(null, panel,
-                        "Modificar Información del Jugador", JOptionPane.OK_CANCEL_OPTION);
-    
-                // Verificar si el usuario hizo clic en "OK"
-                if (result == JOptionPane.OK_OPTION) {
-                    // Obtener los nuevos valores ingresados por el usuario
-                    String nuevoNombre = nombreField.getText();
-                    String nuevoCorreo = correoField.getText();
-                    String nuevoNickname = nicknameField.getText();
-    
-                    // Modificar la información del jugador
-                    jugadorSeleccionado.setNombre(nuevoNombre);
-                    jugadorSeleccionado.setCorreo(nuevoCorreo);
-                    jugadorSeleccionado.setNickName(nuevoNickname);
-    
-                    // Mostrar mensaje de éxito
-                    JOptionPane.showMessageDialog(this, "Información del jugador modificada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
-                }
+        String correoJugadorSeleccionado = (String) listaJugadoresJCombo.getSelectedItem();
+
+        // Buscar el jugador directamente en la lista de jugadores
+        Jugador jugadorSeleccionado = null;
+        int posJugadorSeleccionado = 0;
+        for (int jugadorActual = 0; jugadorActual < competencia.getJugadores().size(); jugadorActual++) {
+            if (competencia.getJugador(jugadorActual).getCorreo().equals(correoJugadorSeleccionado)) {
+                jugadorSeleccionado = competencia.getJugador(jugadorActual);
+                posJugadorSeleccionado = jugadorActual;
+                break;
             }
         }
+
+        //Menu para modificar
+        String menuEModificar = "Seleccione un item a modificar:\n1. Nombre\n2. Nickname\n3. Correo\n4.Partidas";
+
+        //Define que opcion modificar y lo ejecuta
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menuEModificar));
+        switch(opcion){
+            case 1:
+                String nuevoNombre = JOptionPane.showInputDialog(null, "Digite el nuevo nombre:");
+                jugadorSeleccionado.setNombre(nuevoNombre);
+                break;
+            case 2:
+                String nuevoNickname = JOptionPane.showInputDialog(null, "Digite el nuevo Nickname:");
+                jugadorSeleccionado.setNickName(nuevoNickname);
+                break;
+            case 3:
+                String nuevoCorreo = JOptionPane.showInputDialog(null, "Digite el nuevo correo:");
+                jugadorSeleccionado.setCorreo(nuevoCorreo);
+                break;
+            case 4:
+                //
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opcion invalida");
+                break;
+        }
+
+        //Actualizar la lista
+        listaJugadoresCompetencia.set(posJugadorSeleccionado, jugadorSeleccionado);
+        competencia.setJugadores(listaJugadoresCompetencia);
+
+        // Mostrar mensaje de éxito
+        JOptionPane.showMessageDialog(this, "Información del jugador modificada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+                
+    }
+        
     
 
     
