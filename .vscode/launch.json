@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "InterfazTorneo",
+            "request": "launch",
+            "mainClass": "Interfaz.InterfazTorneo",
+            "projectName": "Proyecto_POO_6bd12070"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

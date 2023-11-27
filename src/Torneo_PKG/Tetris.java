@@ -11,6 +11,7 @@ public class Tetris extends Juego{
      */
     public Tetris(String nombre, String casaMatriz, int cantjugadores, String tipoJuego) {
         super(nombre, casaMatriz, cantjugadores, tipoJuego);
+        jugadoresTetris = new ArrayList<Jugador> ();
     }
 
     /*
