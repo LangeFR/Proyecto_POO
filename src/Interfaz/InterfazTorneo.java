@@ -358,8 +358,7 @@ public class InterfazTorneo extends JFrame {
         competencia.setJugadores(listaJugadoresCompetencia);
 
         // Mostrar mensaje de éxito
-        JOptionPane.showMessageDialog(this, "Información del jugador modificada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
-                
+        JOptionPane.showMessageDialog(this, "Información del jugador modificada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);        
     }
         
     
@@ -368,11 +367,54 @@ public class InterfazTorneo extends JFrame {
 
 
 
+    /*
+     * Metodo jugar fortnite
+     * Selecciona un jugador y le pide los datos de la partida
+     * Añade la partida al jugador
+     */
     public void eJugarFortnite(){
+        ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
+        ArrayList<String> listaJugadores = new ArrayList<String>();
+        listaJugadores.add("Seleccione el jugador...");
+
+        for(Jugador jugadorActual : competencia.getJugadores()){
+            listaJugadores.add(jugadorActual.getCorreo());
+        }
+
+        listaJugadoresJCombo = new JComboBox<>(listaJugadores.toArray(new String[listaJugadores.size()]));
+
+        // Obtener el jugador seleccionado del JComboBox
+        JOptionPane.showMessageDialog(this, listaJugadoresJCombo, "Selecciona un Jugador", JOptionPane.QUESTION_MESSAGE);
+        String correoJugadorSeleccionado = (String) listaJugadoresJCombo.getSelectedItem();
+
+        // Buscar el jugador directamente en la lista de jugadores
+        Jugador jugadorSeleccionado = null;
+        int posJugadorSeleccionado = 0;
+        for (int jugadorActual = 0; jugadorActual < competencia.getJugadores().size(); jugadorActual++) {
+            if (competencia.getJugador(jugadorActual).getCorreo().equals(correoJugadorSeleccionado)) {
+                jugadorSeleccionado = competencia.getJugador(jugadorActual);
+                posJugadorSeleccionado = jugadorActual;
+                break;
+            }
+        }
+
         String fecha = JOptionPane.showInputDialog("Digite la fecha: ");
         int tiempo = Integer.parseInt(JOptionPane.showInputDialog("Digite el tiempo: "));
-        int puntaje = Integer.parseInt(JOptionPane.showInputDialog("Digite el puesto: "));
+        int puesto = Integer.parseInt(JOptionPane.showInputDialog("Digite el puesto: "));
+        int puntaje = fortnite.definirPuntaje(puesto);
 
+        Partida partida = new Partida(fecha, tiempo, puntaje, fortnite);
+
+        
+
+        jugadorSeleccionado.agregarPartida(partida);
+
+        //Actualizar la lista
+        listaJugadoresCompetencia.set(posJugadorSeleccionado, jugadorSeleccionado);
+        competencia.setJugadores(listaJugadoresCompetencia);
+
+        // Mostrar mensaje de éxito
+        JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
     public void eJugarAjedrez(){
 
