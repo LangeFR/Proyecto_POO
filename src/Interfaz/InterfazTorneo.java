@@ -17,6 +17,7 @@ public class InterfazTorneo extends JFrame {
     private PanelModificar panelModificar;
     private Competencia competencia;
     private JComboBox<String> listaJugadoresJCombo; // JComboBox para la lista de jugadores
+    private JComboBox<String> listaPartidasJCombo;
     private Fortnite fortnite;
     private Ajedrez ajedrez;
     private ApexLegends apexLegends;
@@ -377,9 +378,40 @@ public void consultar() {
         
     
 
-    
 
 
+
+    public void eModificarPartidas(Jugador jugadorSeleccionado, int posJugadorSeleccionado){
+        ArrayList<Partida> listaJugadoresCompetencia = jugadorSeleccionado.getPartidas();
+        ArrayList<String> listaPartidas = new ArrayList<String>();
+        listaPartidas.add("Seleccione la partida...");
+
+        int count = 1;
+        for(Partida partidaActual : jugadorSeleccionado.getPartidas()){
+            listaPartidas.add("Partida " + count + ": " + partidaActual.getFecha());
+            count++;
+            break;
+        }
+
+        listaPartidasJCombo = new JComboBox<>(listaPartidas.toArray(new String[listaPartidas.size()]));
+
+        JOptionPane.showMessageDialog(this, listaPartidasJCombo, "Selecciona una Partida", JOptionPane.QUESTION_MESSAGE);
+        String fechaPartidaSeleccionada = (String) listaPartidasJCombo.getSelectedItem();
+
+        Partida partidaSeleccionada = null;
+        int posPartidaSeleccionada = 0;
+
+        for(int partidaActual = 0; partidaActual < jugadorSeleccionado.getPartidas().size(); partidaActual++) {
+            if(jugadorSeleccionado.getPartida(partidaActual).getFecha().equals("Partida " + count + ": " + fechaPartidaSeleccionada)){
+                partidaSeleccionada = jugadorSeleccionado.getPartida(partidaActual);
+                posPartidaSeleccionada = partidaActual;
+            }
+        }
+
+        //Menu para modificar
+        String menuEModificarPartida = "Seleccione un item a modificar:\n1. Fecha\n2. Tiempo\n3. Puntaje\n4, Juego";
+
+    }
 
     /*
      * Metodo jugar fortnite

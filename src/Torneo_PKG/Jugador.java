@@ -23,6 +23,7 @@ public class Jugador implements Serializable{
     public String getNombre() {return nombre;}
     public String getCorreo() {return correo;}
     public String getNickName() {return nickName;}
+    public ArrayList<Partida> getPartidas() {return partidas;}
     public Partida getPartida(int i){return partidas.get(i);}
 
     /*
