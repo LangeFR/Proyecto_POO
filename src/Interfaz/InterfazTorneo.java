@@ -119,11 +119,7 @@ public class InterfazTorneo extends JFrame {
 
             
             if (mejorJugador != null) {
-<<<<<<< HEAD
-                String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre();
-=======
                 String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre(); 
->>>>>>> bb48c274dd4231c20fda804a867a873a0afe9fdf
                 JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "No se pudo determinar el campeón del torneo", "Error", JOptionPane.ERROR_MESSAGE);
