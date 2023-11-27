@@ -732,7 +732,7 @@ public class InterfazTorneo extends JFrame {
             //Obtener cantidad de partidas y jugadores de fortnite
             int cantidadPartidas = 0;
             for (int i = 0; i < jugadoresFornite.size(); i++) {
-                cantidadPartidas += jugadoresFornite.get(i).cantidadPartidas(ajedrez);
+                cantidadPartidas += jugadoresFornite.get(i).cantidadPartidas(fortnite);
             }
             int cantidadJugadores = jugadoresFornite.size();
             //Obtener mejor jugador de Fortnite
@@ -755,7 +755,7 @@ public class InterfazTorneo extends JFrame {
             //Obtener cantidad de partidas y jugadores de tetris
             int cantidadPartidas = 0;
             for (int i = 0; i < jugadoresTetris.size(); i++) {
-                cantidadPartidas += jugadoresTetris.get(i).cantidadPartidas(ajedrez);
+                cantidadPartidas += jugadoresTetris.get(i).cantidadPartidas(tetris);
             }
             int cantidadJugadores = jugadoresTetris.size();
             //Obtener mejor jugador de tetris
@@ -778,7 +778,7 @@ public class InterfazTorneo extends JFrame {
             //Obtener cantidad de partidas y jugadores de apex legends
             int cantidadPartidas = 0;
             for (int i = 0; i < jugadoresApex.size(); i++) {
-                cantidadPartidas += jugadoresApex.get(i).cantidadPartidas(ajedrez);
+                cantidadPartidas += jugadoresApex.get(i).cantidadPartidas(apexLegends);
             }
             int cantidadJugadores = jugadoresApex.size();
             //Obtener mejor jugador de apex legends
