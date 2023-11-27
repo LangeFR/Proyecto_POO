@@ -68,40 +68,41 @@ public class InterfazTorneo extends JFrame {
         ic.setVisible(true);
     }
     
-// Lógica para el botón consultar
+    // Lógica para el botón consultar
     public void consultar() {
 
-    // Obtiene el texto del campo de texto
+        // Obtiene el texto del campo de texto
         String correo = PanelJugadores.getNombre();
 
-    // Verifica si el campo de texto está vacío
+        // Verifica si el campo de texto está vacío
         if (correo.isEmpty()) {
-        // Muestra un mensaje de error si está vacío
+            // Muestra un mensaje de error si está vacío
             JOptionPane.showMessageDialog(this, "Error: Debes ingresar un correo para buscar", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-        // Busca el jugador en la lista de competencia
+        }
+        else {
+            // Busca el jugador en la lista de competencia
             Jugador jugadorBusqueda = null;
             for (Jugador jugador : competencia.getJugadores()) {
                 if (jugador.getCorreo().equals(correo)) {
                     jugadorBusqueda = jugador;
                     break;
+                }
+            }
+            // Verifica si se encontró el jugador
+            if (jugadorBusqueda != null) {
+                // Muestra las estadísticas si el jugador está en la lista
+                String mensaje = "Estadísticas del Jugador:\n\n" +
+                        "Cantidad de Partidas: " + jugadorBusqueda.cantidadPartidas() + "\n" +
+                        "Mejor Puntaje: " + jugadorBusqueda.mejorJuego() + "\n" +
+                        "Puntaje Acumulado: " + jugadorBusqueda.puntajeAcumulado();
+
+                JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Jugador", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Muestra un mensaje de error si el jugador no está en la lista
+                JOptionPane.showMessageDialog(this, "Error: Jugador no encontrado en la lista de competencia", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        // Verifica si se encontró el jugador
-        if (jugadorBusqueda != null) {
-            // Muestra las estadísticas si el jugador está en la lista
-            String mensaje = "Estadísticas del Jugador:\n\n" +
-                    "Cantidad de Partidas: " + jugadorBusqueda.cantidadPartidas() + "\n" +
-                    "Mejor Puntaje: " + jugadorBusqueda.mejorJuego() + "\n" +
-                    "Puntaje Acumulado: " + jugadorBusqueda.puntajeAcumulado();
-
-            JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Jugador", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            // Muestra un mensaje de error si el jugador no está en la lista
-            JOptionPane.showMessageDialog(this, "Error: Jugador no encontrado en la lista de competencia", "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }
-}
 
     public void ecampeon() {
         ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
@@ -109,16 +110,16 @@ public class InterfazTorneo extends JFrame {
         if (listaJugadoresCompetencia == null || listaJugadoresCompetencia.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay jugadores registrados", "No hay jugadores", JOptionPane.ERROR_MESSAGE);
         } else {
-        Jugador mejorJugador = competencia.mejorJugador();
+            Jugador mejorJugador = competencia.mejorJugador();
 
-        if (mejorJugador != null) {
-            String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre(); // Assuming there's a getNombre() method in Jugador
-            JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo determinar el campeón del torneo", "Error", JOptionPane.ERROR_MESSAGE);
+            if (mejorJugador != null) {
+                String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre(); // Assuming there's a getNombre() method in Jugador
+                JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo determinar el campeón del torneo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
-}
 
     public void eFortnite() {
         // Recibe el input del usuario para los atributos
@@ -218,6 +219,7 @@ public class InterfazTorneo extends JFrame {
             panelRegistro.limpiarCampos();
         }
     }
+
     public void eTetris(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
@@ -382,11 +384,6 @@ public class InterfazTorneo extends JFrame {
         // Mostrar mensaje de éxito
         JOptionPane.showMessageDialog(this, "Información del jugador modificada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);        
     }
-        
-    
-
-
-
 
     public void eModificarPartidas(Jugador jugadorSeleccionado, int posJugadorSeleccionado){
         ArrayList<Partida> listaPartidasJugador = jugadorSeleccionado.getPartidas();
