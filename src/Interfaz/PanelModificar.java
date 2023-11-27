@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class PanelModificar extends JPanel implements ActionListener {
     private JButton bModificarJugador;
-    private JButton bModificarPartida;
     private static final String bMODIFICAR = "MODIFICAR";
     private InterfazTorneo principal;
 
@@ -18,11 +17,8 @@ public class PanelModificar extends JPanel implements ActionListener {
 
         bModificarJugador = new JButton("Modificar información de jugador");
         bModificarJugador.setBackground(Color.YELLOW);
-        bModificarPartida = new JButton("Modificar información de partida");
-        bModificarPartida.setBackground(Color.YELLOW);
 
         add(bModificarJugador);
-        add(bModificarPartida);
 
         // Agregar ActionListener para el botón Modificar Jugador
         bModificarJugador.addActionListener(this);
