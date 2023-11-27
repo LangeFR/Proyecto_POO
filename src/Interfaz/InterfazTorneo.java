@@ -196,16 +196,17 @@ public class InterfazTorneo extends JFrame {
             panelRegistro.limpiarCampos();
         }
     }
-    public void eTetris(){
+
+        public void eTetris(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
 
-        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
+        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         else{
-
             //Crea un nuevo jugador con dichos atributos
             Jugador jugador = new Jugador(nombre, correo, nickname);
 
@@ -223,6 +224,7 @@ public class InterfazTorneo extends JFrame {
                 if(correoActual.equals(correo))
                     flagCompetencia = false;
             }
+
             if(flagCompetencia){
                 competencia.agregarJugador(jugador);
                 JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -246,6 +248,7 @@ public class InterfazTorneo extends JFrame {
             panelRegistro.limpiarCampos();
         }
     }
+
 
     public void eApex(){
         //Recibe el input del usuario para los atributos
@@ -287,7 +290,7 @@ public class InterfazTorneo extends JFrame {
             * Si no esta inscrito, lo añade 
             */
             if(!apexLegends.isInApexLegends(jugador)){
-                apexLegends.añadirJugadorApexLegends(jugador);;
+                apexLegends.añadirJugadorApexLegends(jugador);
                 JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Apex Legends", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
             else
