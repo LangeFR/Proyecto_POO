@@ -196,17 +196,16 @@ public class InterfazTorneo extends JFrame {
             panelRegistro.limpiarCampos();
         }
     }
-
-        public void eTetris(){
+    public void eTetris(){
         //Recibe el input del usuario para los atributos
         String nombre = panelRegistro.getNombre();
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
 
-        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty()) {
+        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
             JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
-        }
         else{
+
             //Crea un nuevo jugador con dichos atributos
             Jugador jugador = new Jugador(nombre, correo, nickname);
 
@@ -224,7 +223,6 @@ public class InterfazTorneo extends JFrame {
                 if(correoActual.equals(correo))
                     flagCompetencia = false;
             }
-
             if(flagCompetencia){
                 competencia.agregarJugador(jugador);
                 JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -248,7 +246,6 @@ public class InterfazTorneo extends JFrame {
             panelRegistro.limpiarCampos();
         }
     }
-
 
     public void eApex(){
         //Recibe el input del usuario para los atributos
@@ -290,7 +287,7 @@ public class InterfazTorneo extends JFrame {
             * Si no esta inscrito, lo añade 
             */
             if(!apexLegends.isInApexLegends(jugador)){
-                apexLegends.añadirJugadorApexLegends(jugador);
+                apexLegends.añadirJugadorApexLegends(jugador);;
                 JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Apex Legends", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
             else
@@ -420,7 +417,47 @@ public class InterfazTorneo extends JFrame {
         JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
     public void eJugarAjedrez(){
+        ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
+        ArrayList<String> listaJugadores = new ArrayList<String>();
+        listaJugadores.add("Seleccione el jugador...");
 
+        for(Jugador jugadorActual : competencia.getJugadores()){
+            listaJugadores.add(jugadorActual.getCorreo());
+        }
+
+        listaJugadoresJCombo = new JComboBox<>(listaJugadores.toArray(new String[listaJugadores.size()]));
+
+        // Obtener el jugador seleccionado del JComboBox
+        JOptionPane.showMessageDialog(this, listaJugadoresJCombo, "Selecciona un Jugador", JOptionPane.QUESTION_MESSAGE);
+        String correoJugadorSeleccionado = (String) listaJugadoresJCombo.getSelectedItem();
+
+        // Buscar el jugador directamente en la lista de jugadores
+        Jugador jugadorSeleccionado = null;
+        int posJugadorSeleccionado = 0;
+        for (int jugadorActual = 0; jugadorActual < competencia.getJugadores().size(); jugadorActual++) {
+            if (competencia.getJugador(jugadorActual).getCorreo().equals(correoJugadorSeleccionado)) {
+                jugadorSeleccionado = competencia.getJugador(jugadorActual);
+                posJugadorSeleccionado = jugadorActual;
+                break;
+            }
+        }
+
+        String menuAjedrez = "Seleccione el resultado:\n1. Victoria\n2. Empate\n3. Derrota";
+
+        String fecha = JOptionPane.showInputDialog("Digite la fecha: ");
+        int tiempo = Integer.parseInt(JOptionPane.showInputDialog("Digite el tiempo: "));
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menuAjedrez));
+        
+        Partida partida = new Partida(fecha, tiempo, opcion, ajedrez);
+
+        jugadorSeleccionado.agregarPartida(partida);
+
+        //Actualizar la lista
+        listaJugadoresCompetencia.set(posJugadorSeleccionado, jugadorSeleccionado);
+        competencia.setJugadores(listaJugadoresCompetencia);
+
+        // Mostrar mensaje de éxito
+        JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
     public void eJugarTetris(){
 
