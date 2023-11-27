@@ -6,6 +6,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import Torneo_PKG.*;
 
@@ -14,14 +15,13 @@ public class InterfazTorneo extends JFrame {
     private PanelJuegos panelJuegos;
     private PanelJugadores panelJugadores;
     private PanelModificar panelModificar;
-    private int actual;
     private Competencia competencia;
     private JComboBox<String> listaJugadoresJCombo; // JComboBox para la lista de jugadores
-
     private Fortnite fortnite;
     private Ajedrez ajedrez;
     private ApexLegends apexLegends;
     private Tetris tetris;
+    private JTextField tJugador;
 
     public InterfazTorneo() {
         setTitle("Torneo de videojuegos");
@@ -34,6 +34,7 @@ public class InterfazTorneo extends JFrame {
         ajedrez = new Ajedrez("Ajedrez", "None", 2, "1 vs 1");
         apexLegends = new ApexLegends("ApexLegends", "Respawn Entertainment", 50, "Numero de kills");
         tetris = new Tetris("Tetris", "Alekséi Pázhitnov", 1, "Acumulacion de puntos");
+        tJugador = new JTextField();
 
         competencia.agregarJuego(fortnite);
         competencia.agregarJuego(ajedrez);
@@ -43,7 +44,7 @@ public class InterfazTorneo extends JFrame {
         //Estos son los 4 paneles principales
         panelRegistro = new PanelRegistro(this);
         panelJuegos = new PanelJuegos(this);
-        panelJugadores = new PanelJugadores();
+        panelJugadores = new PanelJugadores(this);
         panelModificar = new PanelModificar(this);
         setLayout(new BorderLayout());
 
@@ -72,26 +73,39 @@ public class InterfazTorneo extends JFrame {
         ic.setVisible(true);
     }
     
-    // Lógica para el botón consultar
-    public void consultar() {
-        //Se obtiene el jugador actual de la lista de competencia
-        Jugador j = competencia.getJugador(actual);
-        
-        // Verifica si el jugador está en la lista
-        if (competencia.getJugadores().contains(j)) {
-            // Si está en la lista, mostramos las estadísticas
+// Lógica para el botón consultar
+public void consultar() {
+    // Obtiene el texto del campo de texto
+    String correoBusqueda = tJugador.getText();  // Reemplaza "tuCampoDeTexto" con el nombre real de tu campo de texto
+
+    // Verifica si el campo de texto está vacío
+    if (correoBusqueda.isEmpty()) {
+        // Muestra un mensaje de error si está vacío
+        JOptionPane.showMessageDialog(this, "Error: Debes ingresar un correo para buscar", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        // Busca el jugador en la lista de competencia
+        Jugador jugadorBusqueda = null;
+        for (Jugador jugador : competencia.getJugadores()) {
+            if (jugador.getCorreo().equals(correoBusqueda)) {
+                jugadorBusqueda = jugador;
+                break;
+            }
+        }
+        // Verifica si se encontró el jugador
+        if (jugadorBusqueda != null) {
+            // Muestra las estadísticas si el jugador está en la lista
             String mensaje = "Estadísticas del Jugador:\n\n" +
-                    "Cantidad de Partidas: " + j.cantidadPartidas() + "\n" +
-                    "Mejor Puntaje: " + j.mejorJuego() + "\n" +
-                    "Puntaje Acumulado: " + j.puntajeAcumulado();
+                    "Cantidad de Partidas: " + jugadorBusqueda.cantidadPartidas() + "\n" +
+                    "Mejor Puntaje: " + jugadorBusqueda.mejorJuego() + "\n" +
+                    "Puntaje Acumulado: " + jugadorBusqueda.puntajeAcumulado();
 
             JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Jugador", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            // Si no está en la lista, mostramos un mensaje de error
+            // Muestra un mensaje de error si el jugador no está en la lista
             JOptionPane.showMessageDialog(this, "Error: Jugador no encontrado en la lista de competencia", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+}
 
     public void ecampeon(){
         String mensaje2 = "El campeón del torneo es" + competencia.mejorJugador();

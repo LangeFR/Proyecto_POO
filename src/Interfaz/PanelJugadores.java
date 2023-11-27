@@ -27,7 +27,9 @@ public class PanelJugadores extends JPanel implements ActionListener {
     // Asociación del Panel a la Ventana Principal
     private InterfazTorneo principal;
 
-    public PanelJugadores() {
+    public PanelJugadores(InterfazTorneo inter) {
+        principal = inter;
+        
         setLayout(new GridLayout(0, 1, 10, 10)); // GridLayout con espaciado vertical y horizontal
         TitledBorder border = BorderFactory.createTitledBorder("Consultar estadísticas");
         border.setTitleColor(Color.BLACK);
