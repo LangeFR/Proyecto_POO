@@ -181,6 +181,7 @@ public class InterfazTorneo extends JFrame {
             return true;
         }
         else{
+            JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
     }
@@ -213,7 +214,7 @@ public class InterfazTorneo extends JFrame {
         if(registrarCompetencia(nombre, correo, nickname))
             JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
         else
-            JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+            return;
         
         /*
         * Verifca que el jugador no se encuentre inscrito en Ajedrez
@@ -245,8 +246,7 @@ public class InterfazTorneo extends JFrame {
         if(registrarCompetencia(nombre, correo, nickname))
             JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
         else
-            JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-        
+            return;        
         /*
         * Verifca que el jugador no se encuentre inscrito en Ajedrez
         * Si no esta inscrito, lo añade 
@@ -276,8 +276,7 @@ public class InterfazTorneo extends JFrame {
         if(registrarCompetencia(nombre, correo, nickname))
             JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
         else
-            JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-        
+            return;        
         /*
         * Verifca que el jugador no se encuentre inscrito en Ajedrez
         * Si no esta inscrito, lo añade 
@@ -306,8 +305,7 @@ public class InterfazTorneo extends JFrame {
         if(registrarCompetencia(nombre, correo, nickname))
             JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
         else
-            JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-        
+            return;        
         /*
         * Verifca que el jugador no se encuentre inscrito en Ajedrez
         * Si no esta inscrito, lo añade 
