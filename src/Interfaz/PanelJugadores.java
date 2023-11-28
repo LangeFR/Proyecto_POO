@@ -40,7 +40,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
 
         // Elementos para estadísticas de jugadores
         lStatsJugador = new JLabel("Estadísticas de jugadores:");
-        lJugador = new JLabel("Correo del jugador:");
+        lJugador = new JLabel("Ingresa correo para consultar un jugador:");
         tJugador = new JTextField(30);
         bConsultar = new JButton("Consultar stats del jugador");
         bCampeon = new JButton("Jugadores destacados");
