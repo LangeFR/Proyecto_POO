@@ -127,6 +127,53 @@ public class InterfazTorneo extends JFrame {
         }
     }
 
+    
+    public boolean registrarCompetencia(String nombre, String correo, String nickname){
+        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        //Trae la lista de jugadores de competencia
+        ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
+        boolean flagCompetencia = true;
+
+        /*
+        * Verifica que el jugador no se encuentre inscrito en competencia
+        * Si no esta inscrito, lo añade 
+        */
+        for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++){
+            String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
+
+            if(correoActual.equals(correo))
+                flagCompetencia = false;
+        }
+
+        if(flagCompetencia){
+            //Crea un nuevo jugador con dichos atributos
+            Jugador jugador = new Jugador(nombre, correo, nickname);
+            competencia.agregarJugador(jugador);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public int getPosJugador(String correo){
+        ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
+
+        for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size(); jugadorActual++){
+            String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
+
+            if(correoActual.equals(correo))
+                return jugadorActual;
+        }
+
+        return -1;
+    }
+    
+    
     /*
      * Registra un jugador en competencia y en Fortnite
      */
@@ -136,45 +183,26 @@ public class InterfazTorneo extends JFrame {
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
     
-        // Verifica que los campos no estén en blanco
-        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            // Crea un nuevo jugador con dichos atributos
-            Jugador jugador = new Jugador(nombre, correo, nickname);
-    
-            // Trae la lista de jugadores de competencia
-            ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
-            boolean flagCompetencia = true;
-    
-            // Verifica que el jugador no se encuentre inscrito en competencia
-            for (int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++) {
-                String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
-    
-                if (correoActual.equals(correo)) {
-                    flagCompetencia = false;
-                }
-            }
-    
-            if (flagCompetencia) {
-                // Agrega al jugador a la competencia
-                competencia.agregarJugador(jugador);
-                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-    
-            // Verifica que el jugador no se encuentre inscrito en Fortnite
-            if (!fortnite.isInFortnite(jugador)) {
-                fortnite.añadirJugadorFortnite(jugador);
-                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Fortnite", "Información", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Jugador ya registrado en Fortnite", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
+        if(registrarCompetencia(nombre, correo, nickname))
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+        
+        /*
+        * Verifca que el jugador no se encuentre inscrito en Ajedrez
+        * Si no esta inscrito, lo añade 
+        */
+        int posJugador = getPosJugador(correo);
+        if(!fortnite.isInFortnite(new Jugador(nombre, correo, nickname)) && posJugador != -1){
+            fortnite.añadirJugadorFortnite(competencia.getJugadores().get(posJugador));
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Fortnite", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Jugador ya registrado en Fortnite", "Información", JOptionPane.INFORMATION_MESSAGE);
+
     
             // Limpia los campos para recibir un nuevo inscrito
             panelRegistro.limpiarCampos();
-        }
     }
     
     /*
@@ -186,50 +214,27 @@ public class InterfazTorneo extends JFrame {
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
 
-        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
+        
+        if(registrarCompetencia(nombre, correo, nickname))
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+        
+        /*
+        * Verifca que el jugador no se encuentre inscrito en Ajedrez
+        * Si no esta inscrito, lo añade 
+        */
+        int posJugador = getPosJugador(correo);
+        if(!ajedrez.isInAjedrez(new Jugador(nombre, correo, nickname)) && posJugador != -1){
+            ajedrez.añadirJugadorAjedrez(competencia.getJugadores().get(posJugador));
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Ajedrez", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
-        else{
-            //Crea un nuevo jugador con dichos atributos
-            Jugador jugador = new Jugador(nombre, correo, nickname);
+        else
+            JOptionPane.showMessageDialog(this, "Jugador ya registrado en Ajedrez", "Información", JOptionPane.INFORMATION_MESSAGE);
 
-            //Trae la lista de jugadores de competencia
-            ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
-            boolean flagCompetencia = true;
-
-            /*
-            * Verifica que el jugador no se encuentre inscrito en competencia
-            * Si no esta inscrito, lo añade 
-            */
-            for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++){
-                String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
-
-                if(correoActual.equals(correo))
-                    flagCompetencia = false;
-            }
-
-            if(flagCompetencia){
-                competencia.agregarJugador(jugador);
-                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-
-            /*
-            * Verifica que el jugador no se encuentre inscrito en Ajedrez
-            * Si no esta inscrito, lo añade 
-            */
-            if(!ajedrez.isInAjedrez(jugador)){
-                ajedrez.añadirJugadorAjedrez(jugador);
-                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Ajedrez", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Jugador ya registrado en Ajedrez", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-            //Limpia los campos para recibir un nuevo inscrito
-            panelRegistro.limpiarCampos();
-        }
+        //Limpia los campos para recibir un nuevo inscrito
+        panelRegistro.limpiarCampos();
+        
     }
 
     /*
@@ -241,49 +246,25 @@ public class InterfazTorneo extends JFrame {
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
 
-        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
-            JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
-        else{
-
-            //Crea un nuevo jugador con dichos atributos
-            Jugador jugador = new Jugador(nombre, correo, nickname);
-
-            //Trae la lista de jugadores de competencia
-            ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
-            boolean flagCompetencia = true;
-
-            /*
-            * Verifica que el jugador no se encuentre inscrito en competencia
-            * Si no esta inscrito, lo añade 
-            */
-            for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++){
-                String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
-
-                if(correoActual.equals(correo))
-                    flagCompetencia = false;
-            }
-            if(flagCompetencia){
-                competencia.agregarJugador(jugador);
-                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-
-            /*
-            * Verifica que el jugador no se encuentre inscrito en Tetris
-            * Si no esta inscrito, lo añade 
-            */
-            if(!tetris.isInTetris(jugador)){
-                tetris.añadirJugadorTetris(jugador);
-                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Tetris", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Jugador ya registrado en Tetris", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-            //Limpia los campos para recibir un nuevo inscrito
-            panelRegistro.limpiarCampos();
+        if(registrarCompetencia(nombre, correo, nickname))
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+        
+        /*
+        * Verifca que el jugador no se encuentre inscrito en Ajedrez
+        * Si no esta inscrito, lo añade 
+        */
+        int posJugador = getPosJugador(correo);
+        if(!tetris.isInTetris(new Jugador(nombre, correo, nickname)) && posJugador != -1){
+            tetris.añadirJugadorTetris(competencia.getJugadores().get(posJugador));
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Tetris", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
+        else
+            JOptionPane.showMessageDialog(this, "Jugador ya registrado en Tetris", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+        //Limpia los campos para recibir un nuevo inscrito
+            panelRegistro.limpiarCampos();
     }
 
     /*
@@ -295,49 +276,25 @@ public class InterfazTorneo extends JFrame {
         String correo = panelRegistro.getCorreo();
         String nickname = panelRegistro.getNickname();
 
-        if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
-            JOptionPane.showMessageDialog(this, "Error: Todos los campos deben ser completados", "Error", JOptionPane.ERROR_MESSAGE);
-        else{
-
-            //Crea un nuevo jugador con dichos atributos
-            Jugador jugador = new Jugador(nombre, correo, nickname);
-
-            //Trae la lista de jugadores de competencia
-            ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
-            boolean flagCompetencia = true;
-
-            /*
-            * Verifica que el jugador no se encuentre inscrito en competencia
-            * Si no esta inscrito, lo añade 
-            */
-            for(int jugadorActual = 0; jugadorActual < jugadoresCompetencia.size() && flagCompetencia; jugadorActual++){
-                String correoActual = jugadoresCompetencia.get(jugadorActual).getCorreo();
-
-                if(correoActual.equals(correo))
-                    flagCompetencia = false;
-            }
-            if(flagCompetencia){
-                competencia.agregarJugador(jugador);
-                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-
-            /*
-            * Verifica que el jugador no se encuentre inscrito en Apex Legends
-            * Si no esta inscrito, lo añade 
-            */
-            if(!apexLegends.isInApexLegends(jugador)){
-                apexLegends.añadirJugadorApexLegends(jugador);;
-                JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Apex Legends", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Jugador ya registrado en Apex Legends", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-            //Limpia los campos para recibir un nuevo inscrito
-            panelRegistro.limpiarCampos();
+        if(registrarCompetencia(nombre, correo, nickname))
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(this, "Jugador ya registrado en la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
+        
+        /*
+        * Verifca que el jugador no se encuentre inscrito en Ajedrez
+        * Si no esta inscrito, lo añade 
+        */
+        int posJugador = getPosJugador(correo);
+        if(!apexLegends.isInApexLegends(new Jugador(nombre, correo, nickname)) && posJugador != -1){
+            apexLegends.añadirJugadorApexLegends(competencia.getJugadores().get(posJugador));
+            JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a Apex Legends", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
+        else
+            JOptionPane.showMessageDialog(this, "Jugador ya registrado en Apex Legends", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+        //Limpia los campos para recibir un nuevo inscrito
+            panelRegistro.limpiarCampos();
     }
 
     /*

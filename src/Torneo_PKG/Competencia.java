@@ -51,6 +51,10 @@ public class Competencia implements Serializable{
     }
 
     /*
+     * Recibe un correo y retorna la posicion del jugador
+     */
+
+    /*
      * Recibe la posicion de un juego y lo retorna
      */
     public Juego getJuego(int i){
