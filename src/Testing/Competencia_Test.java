@@ -1,4 +1,4 @@
-package Testing;
+/*package Testing;
 import Torneo_PKG.*;
 
 public class Competencia_Test {
@@ -135,4 +135,4 @@ public class Competencia_Test {
         compePersistente.escribir(compe);
         
     }
-}
+}*/

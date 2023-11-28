@@ -65,7 +65,8 @@ public class Jugador implements Serializable{
         int puntajeTotal = 0;
 
         for (int partidaActual = 0; partidaActual < partidas.size(); partidaActual++){
-            puntajeTotal += partidas.get(partidaActual).getPuntaje();
+            if(partidas.get(partidaActual).getJuego().getNombre().equals(juego.getNombre()))
+                puntajeTotal += partidas.get(partidaActual).getPuntaje();
         }
 
         return puntajeTotal;

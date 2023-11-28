@@ -38,9 +38,10 @@ public class InterfazTorneo extends JFrame {
 
         competencia = compePersistente.leer();
 
-        tetris = (Tetris) competencia.getJuego(0);
-        fortnite = (Fortnite) competencia.getJuego(1);
-        ajedrez = (Ajedrez) competencia.getJuego(2);
+        
+        fortnite = (Fortnite) competencia.getJuego(0);
+        ajedrez = (Ajedrez) competencia.getJuego(1);
+        tetris = (Tetris) competencia.getJuego(2);
         apexLegends = (ApexLegends) competencia.getJuego(3);
 
 
@@ -792,11 +793,13 @@ public class InterfazTorneo extends JFrame {
         ArrayList<Jugador> jugadoresApex = apexLegends.getJugadoresApexLegends();
         //Verificar si hay jugadores de Apex
         if(jugadoresApex != null && !jugadoresApex.isEmpty()) {
+
             //Obtener cantidad de partidas y jugadores de apex legends
             int cantidadPartidas = 0;
             for (int i = 0; i < jugadoresApex.size(); i++) {
                 cantidadPartidas += jugadoresApex.get(i).cantidadPartidas(apexLegends);
             }
+            
             int cantidadJugadores = jugadoresApex.size();
             //Obtener mejor jugador de apex legends
             Jugador mejorJugadorApex = competencia.mejorJugador(apexLegends);
