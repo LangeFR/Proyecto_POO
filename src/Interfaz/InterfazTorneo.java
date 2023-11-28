@@ -796,21 +796,33 @@ public class InterfazTorneo extends JFrame {
             count++;
         }
 
-        JList listaJugadores = new JList(jugadores);
+        // Crear un modelo de lista para la JList
+        DefaultListModel<String> modeloLista = new DefaultListModel<>();
+
+        // Agregar elementos al modelo de lista
+        for (String jugador : jugadores) {
+            modeloLista.addElement(jugador);
+        }
+
+        // Crear la JList con el modelo de lista
+        JList<String> listaJugadores = new JList<>(modeloLista);
+
+        // Crear un JScrollPane y agregar la JList a él
+        JScrollPane scrollPane = new JScrollPane(listaJugadores);
 
         // Crear un JFrame para mostrar la lista de jugadores
         JFrame frame = new JFrame("Lista de Jugadores");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
-        // Agregar la JList a un JScrollPane para permitir el desplazamiento
-        JScrollPane scrollPane = new JScrollPane(listaJugadores);
+        // Agregar el JScrollPane a la ventana
         frame.add(scrollPane, BorderLayout.CENTER);
 
         // Configuración básica de la ventana
         frame.setSize(400, (30 * arrayJugadores.size() + 15));
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
     }
 
     /*
