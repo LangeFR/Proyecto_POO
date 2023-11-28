@@ -85,14 +85,14 @@ public class Competencia implements Serializable{
     public Jugador mejorJugador(Juego juego){
         Jugador mejorJugador = null;
         int maxPuntaje = 0;
-
+    
         for(Jugador jugadorActual : jugadores){
             if(jugadorActual.puntajeAcumulado(juego) > maxPuntaje){
-                maxPuntaje = jugadorActual.horasJugadas();
+                maxPuntaje = jugadorActual.puntajeAcumulado(juego);
                 mejorJugador = jugadorActual;
             } 
         }
-
+    
         return mejorJugador;
     }
 
