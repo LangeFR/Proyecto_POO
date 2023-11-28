@@ -1,5 +1,4 @@
 package Torneo_PKG;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,14 +9,12 @@ import java.io.Serializable;
 public class CompetenciaPersistencia implements Serializable{
 
     private Competencia compe;
-
     /*
      * Constructor recibe Competencia y lo inicializa
      */
     public CompetenciaPersistencia(Competencia compe){
         this.compe = compe;
     }
-
 
     /*
      * Metodo escribir
@@ -50,7 +47,7 @@ public class CompetenciaPersistencia implements Serializable{
 
 
     /*
-     * Metodo escribir
+     * Metodo leer
      * Busca el archivo .bin y lo almacena como un objeto Competencia
      */
     public Competencia leer(){

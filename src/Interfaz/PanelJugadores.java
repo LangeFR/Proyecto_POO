@@ -1,5 +1,4 @@
 package Interfaz;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -121,7 +120,8 @@ public class PanelJugadores extends JPanel implements ActionListener {
     public void limpiar_campos() {
         tJugador.setText("");
     }
-
+    
+    //Manejo de eventos al hacer clic al botón
     public void actionPerformed(ActionEvent evento) {
         String command = evento.getActionCommand();
         switch (command) {

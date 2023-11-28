@@ -1,7 +1,6 @@
 package Interfaz;
 import java.awt.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
 import Torneo_PKG.*;
 
@@ -40,6 +39,10 @@ public class InterfazTorneo extends JFrame {
         panelJugadores = new PanelJugadores(this);
         panelModificar = new PanelModificar(this);
         setLayout(new BorderLayout());
+
+        /*
+         *Tres paneles adicionales para mantener la estética de la interfaz, sobre los cuales agregamos los 4 principales 
+         */
 
         // Panel superior
         JPanel topPanel = new JPanel();
@@ -131,7 +134,9 @@ public class InterfazTorneo extends JFrame {
         }
     }
     
-
+    /*
+     * Lógica para el registro, añade jugadores a la competencia
+     */
     
     public boolean registrarCompetencia(String nombre, String correo, String nickname){
         if (nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty()) {
@@ -164,7 +169,9 @@ public class InterfazTorneo extends JFrame {
             return false;
         }
     }
-    
+    /*
+     * Lógica de getPosJugador, recibe x y retorna la posición del jugador en la lista
+     */
     public int getPosJugador(String correo){
         ArrayList<Jugador> jugadoresCompetencia = competencia.getJugadores();
 
@@ -661,6 +668,9 @@ public class InterfazTorneo extends JFrame {
         JOptionPane.showMessageDialog(this, "Partida agregada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /*
+     * Método cAjedrez, muestra las estadísticas del juego Ajedrez
+     */
     public void cAJEDREZ(){
         ArrayList<Jugador> jugadoresAjedrez = ajedrez.getJugadoresAjedrez();
         // Verificar si hay jugadores de ajedrez
@@ -683,9 +693,11 @@ public class InterfazTorneo extends JFrame {
         } else {
              // Mostrar mensaje si no hay jugadores de ajedrez
             JOptionPane.showMessageDialog(this, "No hay jugadores de ajedrez registrados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
-}
-
+    /*
+     * Método cFORTNITE, muestra las estadísticas del Juego Fortnite
+     */
     public void cFORTNITE(){
         ArrayList<Jugador> jugadoresFornite = fortnite.getJugadoresFortnite();
         //Verificar si hay jugadores de Fortnite
@@ -709,6 +721,9 @@ public class InterfazTorneo extends JFrame {
             JOptionPane.showMessageDialog(this, "No hay jugadores de Fortnite registrados", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+    /*
+     * Método cTetris, muestra las estadísticas del juego Tetris
+     */
     public void cTETRIS(){
         ArrayList<Jugador> jugadoresTetris = tetris.getJugadoresTetris();
         //Verificar si hay jugadores de Tetris
@@ -732,6 +747,9 @@ public class InterfazTorneo extends JFrame {
             JOptionPane.showMessageDialog(this, "No hay jugadores de Tetris registrados", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+    /*
+     * Método cApex, muestra estadísticas del juego Apex Legends
+     */
     public void cAPEX(){
         ArrayList<Jugador> jugadoresApex = apexLegends.getJugadoresApexLegends();
         //Verificar si hay jugadores de Apex
@@ -756,6 +774,9 @@ public class InterfazTorneo extends JFrame {
         }
     }
 
+    /*
+     * Método eConsultarJugadores, despliega la lista de jugadores en la competencia
+     */
     public void eConsultarJugadores(){
         ArrayList<Jugador> arrayJugadores = competencia.getJugadores();
         String[] jugadores = new String[arrayJugadores.size()];
@@ -785,7 +806,9 @@ public class InterfazTorneo extends JFrame {
         frame.setVisible(true);
     }
 
-
+    /*
+     * Método eConsultarPartidas, despliega lista de partidas a partir del jugador seleccionado por el usuario
+     */
     public void eConsultarPartidas(){
         ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
         ArrayList<String> listaJugadores = new ArrayList<String>();
@@ -811,10 +834,6 @@ public class InterfazTorneo extends JFrame {
                 break;
             }
         }
-
-
-
-
         ArrayList<Partida> arrayPartidas = jugadorSeleccionado.getPartidas();
         String[] partidas = new String[arrayPartidas.size()];
 
