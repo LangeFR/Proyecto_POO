@@ -817,7 +817,6 @@ public class InterfazTorneo extends JFrame {
      * Método eConsultarPartidas, despliega lista de partidas a partir del jugador seleccionado por el usuario
      */
     public void eConsultarPartidas(){
-        ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
         ArrayList<String> listaJugadores = new ArrayList<String>();
         listaJugadores.add("Seleccione el jugador...");
 
@@ -833,11 +832,9 @@ public class InterfazTorneo extends JFrame {
 
         // Buscar el jugador directamente en la lista de jugadores
         Jugador jugadorSeleccionado = null;
-        int posJugadorSeleccionado = 0;
         for (int jugadorActual = 0; jugadorActual < competencia.getJugadores().size(); jugadorActual++) {
             if (competencia.getJugador(jugadorActual).getCorreo().equals(correoJugadorSeleccionado)) {
                 jugadorSeleccionado = competencia.getJugador(jugadorActual);
-                posJugadorSeleccionado = jugadorActual;
                 break;
             }
         }
