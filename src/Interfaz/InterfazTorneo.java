@@ -213,7 +213,7 @@ public class InterfazTorneo extends JFrame {
     
         if(registrarCompetencia(nombre, correo, nickname))
             JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-        else
+        else if(nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
             return;
         
         /*
@@ -245,7 +245,7 @@ public class InterfazTorneo extends JFrame {
         
         if(registrarCompetencia(nombre, correo, nickname))
             JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-        else
+        else if(nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
             return;        
         /*
         * Verifca que el jugador no se encuentre inscrito en Ajedrez
@@ -275,8 +275,8 @@ public class InterfazTorneo extends JFrame {
 
         if(registrarCompetencia(nombre, correo, nickname))
             JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-        else
-            return;        
+        else if(nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
+            return;       
         /*
         * Verifca que el jugador no se encuentre inscrito en Ajedrez
         * Si no esta inscrito, lo añade 
@@ -304,7 +304,7 @@ public class InterfazTorneo extends JFrame {
 
         if(registrarCompetencia(nombre, correo, nickname))
             JOptionPane.showMessageDialog(this, "Jugador añadido con éxito a la Competencia", "Información", JOptionPane.INFORMATION_MESSAGE);
-        else
+        else if(nombre.isEmpty() || nickname.isEmpty() || correo.isEmpty())
             return;        
         /*
         * Verifca que el jugador no se encuentre inscrito en Ajedrez
