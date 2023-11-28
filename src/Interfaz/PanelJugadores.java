@@ -27,6 +27,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
     private final static String CONSULTARPARTIDAS = "CONSULTARPARTIDAS";
     private JLabel lStatsJugador;
     private JLabel lStatsVideojuegos;
+    private JLabel MensajeStats;
 
     // Asociación del Panel a la Ventana Principal
     private InterfazTorneo principal;
@@ -43,6 +44,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
         // Elementos para estadísticas de jugadores
         lStatsJugador = new JLabel("Estadísticas de jugadores:");
         lJugador = new JLabel("Ingresa correo para consultar un jugador:");
+        MensajeStats = new JLabel("Oprime un botón para consultar");
         tJugador = new JTextField(30);
         bConsultar = new JButton("Consultar stats del jugador");
         bCampeon = new JButton("Jugadores destacados");
@@ -55,11 +57,12 @@ public class PanelJugadores extends JPanel implements ActionListener {
         bConsultarJugadores.setBackground(Color.YELLOW);
         bConsultarPartidas.setBackground(Color.YELLOW);
 
-        // Añadir botones de estadísticas de jugadores
+        // Añadir botones y labels de estadísticas de jugadores
         add(lStatsJugador);
         add(lJugador);
         add(tJugador);
         add(bConsultar);
+        add(MensajeStats);
         add(bConsultarJugadores);
         add(bConsultarPartidas);
         add(bCampeon);
@@ -95,10 +98,14 @@ public class PanelJugadores extends JPanel implements ActionListener {
         b_cAjedrez.setActionCommand(cAJEDREZ);
         b_cTetris.setActionCommand(cTETRIS);
         b_cApexLegends.setActionCommand(cAPEX_LEGENDS);
+        bConsultarJugadores.setActionCommand(CONSULTARJUGADORES);
+        bConsultarPartidas.setActionCommand(CONSULTARPARTIDAS);
         b_cFortnite.addActionListener(this);
         b_cAjedrez.addActionListener(this);
         b_cTetris.addActionListener(this);
         b_cApexLegends.addActionListener(this);
+        bConsultarJugadores.addActionListener(this);
+        bConsultarPartidas.addActionListener(this);
     }
 
     // Permitir acceso a la información (nombre del jugador)
@@ -136,12 +143,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
             case cAPEX_LEGENDS:
                 principal.cAPEX();
                 break;
-            case CONSULTARJUGADORES:
-                principal.eConsultarJugadores();
-                break;
-            case CONSULTARPARTIDAS:
-                principal.eConsultarPartidas();
-                break;
+
         }
     }
 
