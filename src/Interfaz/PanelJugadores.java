@@ -43,7 +43,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
         lJugador = new JLabel("Correo del jugador:");
         tJugador = new JTextField(30);
         bConsultar = new JButton("Consultar stats del jugador");
-        bCampeon = new JButton("Campeón del torneo");
+        bCampeon = new JButton("Jugadores destacados");
 
         // Configuración de colores
         bConsultar.setBackground(Color.YELLOW);
