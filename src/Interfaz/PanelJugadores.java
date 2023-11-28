@@ -147,7 +147,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
                 principal.eConsultarJugadores();
                 break;
             case CONSULTARPARTIDAS:
-                principal.eConsultarPartidas();
+                //principal.eConsultarPartidas();
                 break;
         }
     }

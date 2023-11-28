@@ -1,10 +1,8 @@
 package Interfaz;
 import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import Torneo_PKG.*;
 
 public class InterfazTorneo extends JFrame {
@@ -756,10 +754,37 @@ public class InterfazTorneo extends JFrame {
         } else {
              // Mostrar mensaje si no hay jugadores de Apex legends
             JOptionPane.showMessageDialog(this, "No hay jugadores de Apex Legends registrados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
-}
 
+    public void eConsultarJugadores(){
+        ArrayList<Jugador> arrayJugadores = competencia.getJugadores();
+        String[] jugadores = new String[arrayJugadores.size()];
 
+        int count = 1;
+        for(Jugador jugadorActual : arrayJugadores){
+            String msg = "Jugador " + count + ":   " + jugadorActual.getNombre() + 
+            "     -     " + jugadorActual.getNickName() + "     -     " + jugadorActual.getCorreo();
+            jugadores[count-1] = msg;
+            count++;
+        }
+
+        JList listaJugadores = new JList(jugadores);
+
+        // Crear un JFrame para mostrar la lista de jugadores
+        JFrame frame = new JFrame("Lista de Jugadores");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+
+        // Agregar la JList a un JScrollPane para permitir el desplazamiento
+        JScrollPane scrollPane = new JScrollPane(listaJugadores);
+        frame.add(scrollPane, BorderLayout.CENTER);
+
+        // Configuración básica de la ventana
+        frame.setSize(400, (30 * arrayJugadores.size() + 15));
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 
 
 }
