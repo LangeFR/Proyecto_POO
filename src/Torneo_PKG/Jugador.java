@@ -147,7 +147,7 @@ public class Jugador implements Serializable{
                 puntajeAjedrez += partida.getPuntaje();
 
                 //Guarda el juego de las partidas de Ajedrez
-                if(juegoFortnite == null)
+                if(juegoAjedrez == null)
                     juegoAjedrez = (Ajedrez) partida.getJuego();
             }
 
@@ -156,7 +156,7 @@ public class Jugador implements Serializable{
                 puntajeApexLegends += partida.getPuntaje();
 
                 //Guarda el juego de las partidas de Apex Legends
-                if(juegoFortnite == null)
+                if(juegoApex == null)
                     juegoApex = (ApexLegends) partida.getJuego();
             }
 
@@ -165,7 +165,7 @@ public class Jugador implements Serializable{
                 puntajeTetris += partida.getPuntaje();
 
                 //Guarda el juego de las partidas de Tetris
-                if(juegoFortnite == null)
+                if(juegoTetris == null)
                     juegoTetris = (Tetris) partida.getJuego();
             }
         }
