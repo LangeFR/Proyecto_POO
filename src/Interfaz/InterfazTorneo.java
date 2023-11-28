@@ -390,7 +390,6 @@ public class InterfazTorneo extends JFrame {
         count = 1;
         for(int partidaActual = 0; partidaActual < jugadorSeleccionado.getPartidas().size(); partidaActual++) {
             String fechaActual = jugadorSeleccionado.getPartida(partidaActual).getFecha();
-            //if(("Partida 2: 2023_11_29").equals(fechaPartidaSeleccionada)){
             if(("Partida " + count + ": " +  fechaActual).equals(fechaPartidaSeleccionada)){
                 partidaSeleccionada = jugadorSeleccionado.getPartida(partidaActual);
                 posPartidaSeleccionada = partidaActual;
@@ -787,6 +786,74 @@ public class InterfazTorneo extends JFrame {
     }
 
 
+    public void eConsultarPartidas(){
+        ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
+        ArrayList<String> listaJugadores = new ArrayList<String>();
+        listaJugadores.add("Seleccione el jugador...");
+
+        for(Jugador jugadorActual : competencia.getJugadores()){
+            listaJugadores.add(jugadorActual.getCorreo());
+        }
+
+        listaJugadoresJCombo = new JComboBox<>(listaJugadores.toArray(new String[listaJugadores.size()]));
+
+        // Obtener el jugador seleccionado del JComboBox
+        JOptionPane.showMessageDialog(this, listaJugadoresJCombo, "Selecciona un Jugador", JOptionPane.QUESTION_MESSAGE);
+        String correoJugadorSeleccionado = (String) listaJugadoresJCombo.getSelectedItem();
+
+        // Buscar el jugador directamente en la lista de jugadores
+        Jugador jugadorSeleccionado = null;
+        int posJugadorSeleccionado = 0;
+        for (int jugadorActual = 0; jugadorActual < competencia.getJugadores().size(); jugadorActual++) {
+            if (competencia.getJugador(jugadorActual).getCorreo().equals(correoJugadorSeleccionado)) {
+                jugadorSeleccionado = competencia.getJugador(jugadorActual);
+                posJugadorSeleccionado = jugadorActual;
+                break;
+            }
+        }
+
+
+
+
+        ArrayList<Partida> arrayPartidas = jugadorSeleccionado.getPartidas();
+        String[] partidas = new String[arrayPartidas.size()];
+
+        int count = 1;
+        for(Partida  partidaActual : arrayPartidas){
+            String msg = "Partida " + count + ":   " + partidaActual.getFecha() + "   -   " + partidaActual.getTiempo() +
+            " sec.   -   " + partidaActual.getPuntaje() + " pts   -   " + partidaActual.getJuego().getNombre();
+            partidas[count-1] = msg;
+            count++;
+        }
+
+        // Crear un modelo de lista para la JList
+        DefaultListModel<String> modeloLista = new DefaultListModel<>();
+
+        // Agregar elementos al modelo de lista
+        for (String partida : partidas) {
+            modeloLista.addElement(partida);
+        }
+
+        // Crear la JList con el modelo de lista
+        JList<String> listaPartidas = new JList<>(modeloLista);
+
+        // Crear un JScrollPane y agregar la JList a él
+        JScrollPane scrollPane = new JScrollPane(listaPartidas);
+
+        // Crear un JFrame para mostrar la lista de jugadores
+        JFrame frame = new JFrame("Lista de Partidas");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+
+        // Agregar el JScrollPane a la ventana
+        frame.add(scrollPane, BorderLayout.CENTER);
+
+        // Configuración básica de la ventana
+        frame.setSize(400, (30 * arrayPartidas.size() + 15));
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+    }
 }
 
 
