@@ -107,7 +107,7 @@ public class InterfazTorneo extends JFrame {
                 // Muestra las estadísticas si el jugador está en la lista
                 String mensaje = "Estadísticas del Jugador:\n\n" +
                         "Cantidad de Partidas: " + jugadorBusqueda.cantidadPartidas() + "\n" +
-                        "Mejor Puntaje: " + jugadorBusqueda.mejorJuego() + "\n" +
+                        "Mejor Juego: " + jugadorBusqueda.mejorJuego() + "\n" +
                         "Puntaje Acumulado: " + jugadorBusqueda.puntajeAcumulado();
 
                 JOptionPane.showMessageDialog(this, mensaje, "Estadísticas del Jugador", JOptionPane.INFORMATION_MESSAGE);
