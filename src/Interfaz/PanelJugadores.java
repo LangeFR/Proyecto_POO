@@ -143,7 +143,12 @@ public class PanelJugadores extends JPanel implements ActionListener {
             case cAPEX_LEGENDS:
                 principal.cAPEX();
                 break;
-
+            case CONSULTARJUGADORES:
+                principal.eConsultarJugadores();
+                break;
+            case CONSULTARPARTIDAS:
+                principal.eConsultarPartidas();
+                break;
         }
     }
 
