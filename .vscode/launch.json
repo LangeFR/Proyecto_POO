@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Competencia_Test",
+            "request": "launch",
+            "mainClass": "Testing.Competencia_Test",
+            "projectName": "Proyecto_POO_54438937"
+        },
+        {
+            "type": "java",
             "name": "Partida_Test",
             "request": "launch",
             "mainClass": "Testing.Partida_Test",
