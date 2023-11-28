@@ -16,14 +16,17 @@ public class InterfazTorneo extends JFrame {
     private Ajedrez ajedrez;
     private ApexLegends apexLegends;
     private Tetris tetris;
+    CompetenciaPersistencia compePersistente;
 
-    public InterfazTorneo() {
+    public InterfazTorneo(Competencia compe) {
+        compePersistente = new CompetenciaPersistencia(compe);
+
         setTitle("Torneo de videojuegos");
         setSize(1050, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Inicilizar juegos y competencia
-        competencia = new Competencia();
+        /*competencia = new Competencia();
         fortnite = new Fortnite("Fortnite", "Epic Games", 100, "Last one Standing");
         ajedrez = new Ajedrez("Ajedrez", "None", 2, "1 vs 1");
         apexLegends = new ApexLegends("ApexLegends", "Respawn Entertainment", 50, "Numero de kills");
@@ -31,7 +34,9 @@ public class InterfazTorneo extends JFrame {
         competencia.agregarJuego(fortnite);
         competencia.agregarJuego(ajedrez);
         competencia.agregarJuego(apexLegends);
-        competencia.agregarJuego(tetris);
+        competencia.agregarJuego(tetris);*/
+
+        competencia = compePersistente.leer();
 
         //Estos son los 4 paneles principales
         panelRegistro = new PanelRegistro(this);
@@ -65,7 +70,9 @@ public class InterfazTorneo extends JFrame {
     }
         //Hacer visible la interfaz
     public static void main(String[] args) {
-        InterfazTorneo ic = new InterfazTorneo();
+        Competencia compe = new Competencia();
+
+        InterfazTorneo ic = new InterfazTorneo(compe);
         ic.setVisible(true);
     }
     
