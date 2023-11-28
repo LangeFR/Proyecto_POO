@@ -726,8 +726,8 @@ public class InterfazTorneo extends JFrame {
         } else {
              // Mostrar mensaje si no hay jugadores de ajedrez
             JOptionPane.showMessageDialog(this, "No hay jugadores de Fortnite registrados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
-}
     /*
      * Método cTetris, muestra las estadísticas del juego Tetris
      */
@@ -752,8 +752,8 @@ public class InterfazTorneo extends JFrame {
         } else {
              // Mostrar mensaje si no hay jugadores de ajedrez
             JOptionPane.showMessageDialog(this, "No hay jugadores de Tetris registrados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
-}
     /*
      * Método cApex, muestra estadísticas del juego Apex Legends
      */
