@@ -15,12 +15,16 @@ public class PanelJugadores extends JPanel implements ActionListener {
     private JButton b_cAjedrez;
     private JButton b_cTetris;
     private JButton b_cApexLegends;
+    private JButton bConsultarJugadores;
+    private JButton bConsultarPartidas;
     private final static String cFORTNITE = "cFORTNITE";
     private final static String cAJEDREZ = "cAJEDREZ";
     private final static String cTETRIS = "cTETRIS";
     private final static String cAPEX_LEGENDS = "cAPEX LEGENDS";
     private final static String CONSULTAR = "CONSULTAR";
     private final static String CAMPEON = "CAMPEON";
+    private final static String CONSULTARJUGADORES = "CONSULTARJUGADORES";
+    private final static String CONSULTARPARTIDAS = "CONSULTARPARTIDAS";
     private JLabel lStatsJugador;
     private JLabel lStatsVideojuegos;
 
@@ -30,10 +34,8 @@ public class PanelJugadores extends JPanel implements ActionListener {
     public PanelJugadores(InterfazTorneo inter) {
         principal = inter;
         tJugador = new JTextField();
-
-        
         setLayout(new GridLayout(0, 1, 10, 10)); // GridLayout con espaciado vertical y horizontal
-        TitledBorder border = BorderFactory.createTitledBorder("Consultar estadísticas");
+        TitledBorder border = BorderFactory.createTitledBorder("Estadísticas");
         border.setTitleColor(Color.BLACK);
         setBorder(border);
         setBackground(Color.WHITE);
@@ -44,16 +46,22 @@ public class PanelJugadores extends JPanel implements ActionListener {
         tJugador = new JTextField(30);
         bConsultar = new JButton("Consultar stats del jugador");
         bCampeon = new JButton("Jugadores destacados");
+        bConsultarJugadores = new JButton("Lista de jugadores");
+        bConsultarPartidas = new JButton("Lista de partidas");
 
         // Configuración de colores
-        bConsultar.setBackground(Color.YELLOW);
+        bConsultar.setBackground(Color.PINK);
         bCampeon.setBackground(Color.YELLOW);
+        bConsultarJugadores.setBackground(Color.YELLOW);
+        bConsultarPartidas.setBackground(Color.YELLOW);
 
         // Añadir botones de estadísticas de jugadores
         add(lStatsJugador);
         add(lJugador);
         add(tJugador);
         add(bConsultar);
+        add(bConsultarJugadores);
+        add(bConsultarPartidas);
         add(bCampeon);
 
         // Configurar acciones y comandos para los botones
@@ -127,6 +135,12 @@ public class PanelJugadores extends JPanel implements ActionListener {
                 break;
             case cAPEX_LEGENDS:
                 principal.cAPEX();
+                break;
+            case CONSULTARJUGADORES:
+                principal.eConsultarJugadores();
+                break;
+            case CONSULTARPARTIDAS:
+                principal.eConsultarPartidas();
                 break;
         }
     }
