@@ -1,5 +1,4 @@
 package Torneo_PKG;
-
 import java.io.Serializable;
 
 public abstract class Juego implements Serializable{
