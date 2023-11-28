@@ -38,6 +38,13 @@ public class InterfazTorneo extends JFrame {
 
         competencia = compePersistente.leer();
 
+        tetris = (Tetris) competencia.getJuego(0);
+        fortnite = (Fortnite) competencia.getJuego(1);
+        ajedrez = (Ajedrez) competencia.getJuego(2);
+        apexLegends = (ApexLegends) competencia.getJuego(3);
+
+
+
         //Estos son los 4 paneles principales
         panelRegistro = new PanelRegistro(this);
         panelJuegos = new PanelJuegos(this);
@@ -510,6 +517,12 @@ public class InterfazTorneo extends JFrame {
             }
         }
 
+        //Verifica que el jugador este registrado en el juego para poder jugar
+        if(!fortnite.isInFortnite(jugadorSeleccionado)){
+            JOptionPane.showMessageDialog(null, "El jugador no esta registrado en Fortnite");
+            return;
+        }
+
         String fecha = JOptionPane.showInputDialog("Digite la fecha: ");
         int tiempo = Integer.parseInt(JOptionPane.showInputDialog("Digite el tiempo: "));
         int puesto = Integer.parseInt(JOptionPane.showInputDialog("Digite el puesto: "));
@@ -558,6 +571,12 @@ public class InterfazTorneo extends JFrame {
                 posJugadorSeleccionado = jugadorActual;
                 break;
             }
+        }
+
+        //Verifica que el jugador este registrado en el juego para poder jugar
+        if(!ajedrez.isInAjedrez(jugadorSeleccionado)){
+            JOptionPane.showMessageDialog(null, "El jugador no esta registrado en Ajedrez");
+            return;
         }
 
         String menuAjedrez = "Seleccione el resultado:\n1. Victoria\n2. Empate\n3. Derrota";
@@ -609,6 +628,12 @@ public class InterfazTorneo extends JFrame {
             }
         }
 
+        //Verifica que el jugador este registrado en el juego para poder jugar
+        if(!tetris.isInTetris(jugadorSeleccionado)){
+            JOptionPane.showMessageDialog(null, "El jugador no esta registrado en Tetris");
+            return;
+        }
+
         String fecha = JOptionPane.showInputDialog("Digite la fecha: ");
         int tiempo = Integer.parseInt(JOptionPane.showInputDialog("Digite el tiempo: "));
         int filledRows = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de filas despejadas: "));
@@ -656,6 +681,12 @@ public class InterfazTorneo extends JFrame {
                 posJugadorSeleccionado = jugadorActual;
                 break;
             }
+        }
+
+        //Verifica que el jugador este registrado en el juego para poder jugar
+        if(!apexLegends.isInApexLegends(jugadorSeleccionado)){
+            JOptionPane.showMessageDialog(null, "El jugador no esta registrado en Apex Legends");
+            return;
         }
 
         String fecha = JOptionPane.showInputDialog("Digite la fecha: ");
