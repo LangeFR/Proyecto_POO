@@ -114,7 +114,7 @@ public class PanelJugadores extends JPanel implements ActionListener {
                 principal.consultar();
                 break;
             case CAMPEON:
-                principal.ecampeon();
+                principal.eJugadoresDestacados();
                 break;
             case cFORTNITE:
                 principal.cFORTNITE();

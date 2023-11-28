@@ -103,29 +103,36 @@ public class InterfazTorneo extends JFrame {
     }
 
     /*
-     * Logica para el boton de campeon
-     * Encuentra el jugador con mas puntos
+     * Logica para jugadores destacados
+     * Encuentra el jugador con mas puntos (mejor jugador), jugador con más tiempo (adicto) y jugador con más partidas (persistente)
      */
-    public void ecampeon() {
-        //Trae la lista de los jugadores de competencia
+    public void eJugadoresDestacados() {
+        // Trae la lista de los jugadores de competencia
         ArrayList<Jugador> listaJugadoresCompetencia = competencia.getJugadores();
-
-        //Verifica que haya colocado un correo
+    
+        // Verifica que hayajugadores
         if (listaJugadoresCompetencia == null || listaJugadoresCompetencia.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay jugadores registrados", "No hay jugadores", JOptionPane.ERROR_MESSAGE);
         } else {
-            //Trae al jugador con mas puntos
+            // Trae a los tres jugadores destacados
             Jugador mejorJugador = competencia.mejorJugador();
-
-            
-            if (mejorJugador != null) {
-                String mensaje2 = "El campeón del torneo es " + mejorJugador.getNombre(); 
-                JOptionPane.showMessageDialog(this, mensaje2, "Campeón", JOptionPane.INFORMATION_MESSAGE);
+            Jugador jugadorAdicto = competencia.adicto();
+            Jugador jugadorPersistente = competencia.persistente();
+    
+            if (mejorJugador != null && jugadorAdicto != null && jugadorPersistente != null) {
+                String mensajeCampeon = "El campeón del torneo es " + mejorJugador.getNombre();
+                String mensajeAdicto = "El jugador más adicto es " + jugadorAdicto.getNombre();
+                String mensajePersistente = "El jugador más persistente es " + jugadorPersistente.getNombre();
+    
+                String mensajeFinal = mensajeCampeon + "\n\n" + mensajeAdicto + "\n\n" + mensajePersistente;
+    
+                JOptionPane.showMessageDialog(this, mensajeFinal, "Jugadores Destacados", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "No se pudo determinar el campeón del torneo", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo determinar la información de los jugadores destacados", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
+    
 
     
     public boolean registrarCompetencia(String nombre, String correo, String nickname){
